@@ -1,10 +1,10 @@
-# Fit Jib - A MERN Project
+# Fitness Focus - A MERN Project
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Final Deployed Webpage
 
-[Fit Jib Deployed Application (powered by Heroku)](https://fit-jib.herokuapp.com/)
+[Fitness Focus Deployed Application (powered by Heroku)](https://fitness-focus.herokuapp.com/)
 
 ## Table of Contents
 
