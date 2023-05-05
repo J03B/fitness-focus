@@ -10,51 +10,11 @@ export const QUERY_ME = gql`
     programsCount
     programs {
       _id
-      name
-      description
-      image
-      phasesCount
-      phases {
-        _id
-        name
-        description
-        position
-        numberOfWeeks
-        workoutsCount
-        workouts {
-          _id
-          name
-          description
-          position
-          secBtwnExs
-          exercisesCount
-          exercises {
-            _id
-            name
-            description
-            position
-            goalReps
-            goalWeight
-            goalUnits
-            numSets
-            secBtwnSets
-            exercisesCount
-            exDatasCount
-            exDatas {
-              _id
-              setNum
-              reps
-              weight
-              units
-              comment
-            }
-          }
-        }
-      }
     }
   }
 }
 `;
+
 //  programs(id: ID!): Program
 
 export const QUERY_PROGRAMS = gql`

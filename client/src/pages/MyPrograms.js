@@ -23,9 +23,12 @@ const MyPrograms = () => {
         window.location.assign('/');
     }
 
-
     if (loading) {
         return <Spinner animation="border" variant="primary" />;
+    }
+
+    else {
+        console.log(userData);
     }
 
     return (
