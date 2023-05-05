@@ -24,19 +24,18 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
     try {
-      const { data } = await addUser({
-        variables: { ...userFormData },
+      const data = await addUser({
+        variables: { 
+          firstName: userFormData.firstName, 
+          lastName: userFormData.lastName, 
+          email: userFormData.email, 
+          password: userFormData.password
+         },
       });
 
-      Auth.login(data.addUser.token);
+      const token = data.data.addUser.token;
+      Auth.login(token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -65,6 +64,7 @@ const SignupForm = () => {
             type='text'
             placeholder='Your First Name'
             name='firstName'
+            id='firstName'
             onChange={handleInputChange}
             value={userFormData.firstName}
             required
@@ -78,6 +78,7 @@ const SignupForm = () => {
             type='text'
             placeholder='Your Last Name'
             name='lastName'
+            id='lastName'
             onChange={handleInputChange}
             value={userFormData.lastName}
             required
@@ -91,6 +92,7 @@ const SignupForm = () => {
             type='email'
             placeholder='Your email address'
             name='email'
+            id='email'
             onChange={handleInputChange}
             value={userFormData.email}
             required
@@ -104,6 +106,7 @@ const SignupForm = () => {
             type='password'
             placeholder='Your password'
             name='password'
+            id='password'
             onChange={handleInputChange}
             value={userFormData.password}
             required
