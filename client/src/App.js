@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import MyPrograms from './pages/MyPrograms';
 import StartWorkout from './pages/Workout';
+import NoMatch from './pages/NoMatch';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
