@@ -22,7 +22,7 @@ const workoutSchema = new Schema(
       type: Number,
       required: true,
     },
-    exercises: [Exercise.Schema],
+    exercises: [Exercise.schema],
   },
   // set this to use virtual below
   {

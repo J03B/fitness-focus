@@ -38,7 +38,7 @@ const exerciseSchema = new Schema(
       type: Number,
       required: true,
     },
-    exDatas: [ExData.Schema],
+    exDatas: [ExData.schema],
   },
   // set this to use virtual below
   {
