@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    // REFACTOR TO USE THE me QUERY
+    // me Query to GET all logged in user's data
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
@@ -14,10 +14,28 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in.');
     },
+
+    // programs(id: ID!): Program
+    programs: async (parent, args, context, info) => {
+      return Program.find((prog) => prog._id === args._id);
+    },
+    // phases(id: ID!): Phase
+    phases: async (parent, args, context, info) => {
+      return Phase.find((prog) => prog._id === args._id);
+    },
+    // workouts(id: ID!): Workout
+    workouts: async (parent, args, context, info) => {
+      return Workout.find((prog) => prog._id === args._id);
+    },
+    // exercise(id: ID!): Exercise
+    exercise: async (parent, args, context, info) => {
+      return Exercise.find((prog) => prog._id === args._id);
+    },
   },
+  
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+  addUser: async (parent, { firstName, lastName, email, password }) => {
+    const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },

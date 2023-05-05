@@ -60,6 +60,7 @@ const typeDefs = gql`
     reps: Int
     weight: Int
     units: String
+    comment: String
   }
 
   type Auth {
@@ -69,6 +70,10 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    programs(id: ID!): Program
+    phases(id: ID!): Phase
+    workouts(id: ID!): Workout
+    exercise(id: ID!): Exercise
   }
 
   type Mutation {
