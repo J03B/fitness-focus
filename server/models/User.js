@@ -26,7 +26,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    programs: [Program.schema]
+    programs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Program'
+      }
+    ]
   },
   // set this to use virtual below
   {

@@ -16,7 +16,12 @@ const programSchema = new Schema(
     image: {
       type: String
     },
-    phases: [Phase.schema],
+    phases: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Phase'
+      }
+    ],
   },
   // set this to use virtual below
   {

@@ -21,7 +21,12 @@ const phaseSchema = new Schema(
             type: Number,
             required: true,
         },
-        workouts: [Workout.schema],
+        workouts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Workout'
+            }
+        ],
     },
     // set this to use virtual below
     {
