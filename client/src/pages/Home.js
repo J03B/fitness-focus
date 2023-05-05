@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <>
             <Container fluid >
-                <h1 className='mb-3'>Welcome to Fit Jib</h1>
+                <h1 className='mb-3'>Welcome to Fitness Focus</h1>
                 <h3 className="mb-3">Get started by going to your My Programs Dashboard or simply start one of you workouts with the quick links below.</h3>
                 <Button variant="outline-info" href='/programs'>Go to My Programs</Button>{' '}
             </Container>
