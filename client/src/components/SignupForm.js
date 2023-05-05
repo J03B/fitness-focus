@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Alert, Button, TextField } from '@mui/material';
 
 // GraphQL backend
 import { useMutation } from '@apollo/client';
@@ -52,74 +52,70 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        {showAlert && <Alert variant='standard' severity='error' color='error'>
           Something went wrong with your signup!
-        </Alert>
+        </Alert>}
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='firstName'>First Name</Form.Label>
-          <Form.Control
+        <div className='mb-3'>
+          <TextField
             type='text'
-            placeholder='Your First Name'
+            label='First Name'
             name='firstName'
             id='firstName'
             onChange={handleInputChange}
             value={userFormData.firstName}
             required
+            style={{width:"100%"}}
           />
-          <Form.Control.Feedback type='invalid'>First Name is required!</Form.Control.Feedback>
-        </Form.Group>
+        </div>
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='lastName'>Last Name</Form.Label>
-          <Form.Control
+        <div className='mb-3'>
+          <TextField
             type='text'
-            placeholder='Your Last Name'
+            label='Last Name'
             name='lastName'
             id='lastName'
             onChange={handleInputChange}
             value={userFormData.lastName}
             required
+            style={{width:"100%"}}
           />
-          <Form.Control.Feedback type='invalid'>Last Name is required!</Form.Control.Feedback>
-        </Form.Group>
+        </div>
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
+        <div className='mb-3'>
+          <TextField
             type='email'
-            placeholder='Your email address'
+            label='Email Address'
             name='email'
             id='email'
             onChange={handleInputChange}
             value={userFormData.email}
             required
+            style={{width:"100%"}}
           />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-        </Form.Group>
+        </div>
 
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
+        <div className='mb-3'>
+          <TextField
             type='password'
-            placeholder='Your password'
+            label='Password'
             name='password'
             id='password'
             onChange={handleInputChange}
             value={userFormData.password}
             required
+            style={{width:"100%"}}
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-        </Form.Group>
+        </div>
         <Button
           disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
           Submit
         </Button>
-      </Form>
+      </form>
     </>
   );
 };

@@ -40,7 +40,6 @@ const AppNavbar = () => {
       </Navbar>
       {/* set modal data up */}
       <Modal
-        size='lg'
         show={showModal}
         onHide={() => setShowModal(false)}
         aria-labelledby='signup-modal'>
