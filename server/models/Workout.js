@@ -43,11 +43,10 @@ workoutSchema.virtual('exercisesCount').get(function () {
 });
 
 workoutSchema.virtual('totalSetsCount').get(function () {
-  const cnt = this.exercises.length;
   let totSets = 0;
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    
+  for (let i = 0; i < this.exercises.length - 1; i++) {
+    const el = this.exercises[i];
+    totSets += el.numSets;
   }
   return totSets;
 });

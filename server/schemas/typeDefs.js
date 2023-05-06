@@ -44,6 +44,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
+    image: String
     position: Int
     goalReps: Int
     goalWeight: Int
@@ -79,6 +80,16 @@ const typeDefs = gql`
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    addExData(setNum: Int!, reps: Int!, weight: Int!, units: String!, comment: String): ExData
+    addExercise(name: String!, description: String, image: String, position: Int!, goalReps: Int!, goalWeight: Int!, goalUnits: String!, numSets: Int!, secBtwnSets: Int!): Exercise
+    addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!): Workout
+    addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!): Phase
+    addProgram(name: String!, description: String, image: String): Program
+    updateGoals(_id: ID!, goalReps: Int!, goalWeight: Int!, goalUnits: String): Exercise
+    addExersData(_id: ID!, exDatas: [ExData]!): Exercise
+    addWorkExers(_id: ID!, exercises: [ID]!): Workout
+    addPhaseWorks(_id: ID!, workouts: [ID]!): Phase
+    addProgPhases(_id: ID!, phases: [ID]!): Program
   }
 `;
 
