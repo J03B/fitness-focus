@@ -73,6 +73,7 @@ export const QUERY_EXERCISES = gql`
       _id
       name
       description
+      image
       position
       goalReps
       goalWeight

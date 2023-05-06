@@ -14,6 +14,9 @@ const exerciseSchema = new Schema(
     description: {
       type: String
     },
+    image: {
+      type: String,
+    },
     position: {         // This is the position in the Phase
       type: Number,
       required: true,
