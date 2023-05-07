@@ -8,12 +8,23 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+// Import Themes to use dark by default
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
 // Import the different pages 
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import MyPrograms from './pages/MyPrograms';
 import StartWorkout from './pages/Workout';
 import NoMatch from './pages/NoMatch';
+
+// Set dark theme as the default
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -36,31 +47,34 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route 
-              path="/" 
-              element={<Home />} 
-            />
-            <Route 
-              path="/workout" 
-              element={<StartWorkout />} 
-            />
-            <Route 
-              path="/programs" 
-              element={<MyPrograms />} 
-            />
-            <Route 
-              path="*" 
-              element={<NoMatch />} 
-            />
-          </Routes>
-        </div>
-      </Router>
-    </ApolloProvider>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <ApolloProvider client={client}>
+        <Router>
+          <div>
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              <Route
+                path="/workout"
+                element={<StartWorkout />}
+              />
+              <Route
+                path="/programs"
+                element={<MyPrograms />}
+              />
+              <Route
+                path="*"
+                element={<NoMatch />}
+              />
+            </Routes>
+          </div>
+        </Router>
+      </ApolloProvider>
+    </ThemeProvider>
   );
 }
 

@@ -32,10 +32,10 @@ const resolvers = {
       return Exercise.find((prog) => prog._id === args._id);
     },
   },
-  
+
   Mutation: {
-  addUser: async (parent, { firstName, lastName, email, password }) => {
-    const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -83,37 +83,37 @@ const resolvers = {
       }
     },
     // updateGoals(_id: ID!, goalReps: Int!, goalWeight: Int!, goalUnits: String): Exercise
-    updateGoals: async (parent, {_id, goalReps, goalWeight, goalUnits}, context) => {
+    updateGoals: async (parent, { _id, goalReps, goalWeight, goalUnits }, context) => {
       if (context.user) {
-        return await Exercise.findByIdAndUpdate(_id, {goalReps, goalWeight, goalUnits}, {new: true});
+        return await Exercise.findByIdAndUpdate(_id, { goalReps, goalWeight, goalUnits }, { new: true });
       }
       throw new AuthenticationError('Not logged in');
     },
     // addExersData(_id: ID!, exDatas: [ExData]!): Exercise
-    addExersData: async (parent, {_id, exDatas}, context) => {
+    addExersData: async (parent, { _id, exDatas }, context) => {
       if (context.user) {
-        return await Exercise.findByIdAndUpdate(_id, exDatas, {new: true});
+        return await Exercise.findByIdAndUpdate(_id, exDatas, { new: true });
       }
       throw new AuthenticationError('Not logged in');
     },
     // addWorkExers(_id: ID!, exercises: [ID]!): Workout
-    addWorkExers: async (parent, {_id, exercises}, context) => {
+    addWorkExers: async (parent, { _id, exercises }, context) => {
       if (context.user) {
-        return await Workout.findByIdAndUpdate(_id, exercises, {new: true});
+        return await Workout.findByIdAndUpdate(_id, exercises, { new: true });
       }
       throw new AuthenticationError('Not logged in');
     },
     // addPhaseWorks(_id: ID!, workouts: [ID]!): Phase
-    addPhaseWorks: async (parent, {_id, workouts}, context) => {
+    addPhaseWorks: async (parent, { _id, workouts }, context) => {
       if (context.user) {
-        return await Phase.findByIdAndUpdate(_id, workouts, {new: true});
+        return await Phase.findByIdAndUpdate(_id, workouts, { new: true });
       }
       throw new AuthenticationError('Not logged in');
     },
     // addProgPhases(_id: ID!, phases: [ID]!): Program
-    addProgPhases: async (parent, {_id, phases}, context) => {
+    addProgPhases: async (parent, { _id, phases }, context) => {
       if (context.user) {
-        return await Program.findByIdAndUpdate(_id, phases, {new: true});
+        return await Program.findByIdAndUpdate(_id, phases, { new: true });
       }
       throw new AuthenticationError('Not logged in');
     },

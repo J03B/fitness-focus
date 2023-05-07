@@ -16,7 +16,6 @@ export const QUERY_ME = gql`
 `;
 
 //  programs(id: ID!): Program
-
 export const QUERY_PROGRAMS = gql`
   query getPrograms($progId: ID) {
     programs(id: $progId) {

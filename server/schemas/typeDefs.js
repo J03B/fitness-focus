@@ -86,7 +86,7 @@ const typeDefs = gql`
     addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!): Phase
     addProgram(name: String!, description: String, image: String): Program
     updateGoals(_id: ID!, goalReps: Int!, goalWeight: Int!, goalUnits: String): Exercise
-    addExersData(_id: ID!, exDatas: [ExData]!): Exercise
+    addExersData(_id: ID!, exDatas: [ID]!): Exercise
     addWorkExers(_id: ID!, exercises: [ID]!): Workout
     addPhaseWorks(_id: ID!, workouts: [ID]!): Phase
     addProgPhases(_id: ID!, phases: [ID]!): Program
