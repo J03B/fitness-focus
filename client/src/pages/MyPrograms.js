@@ -11,12 +11,25 @@ import {
 import Auth from '../utils/auth';
 
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_ME, QUERY_PROGRAMS } from "../utils/queries";
 
 const MyPrograms = () => {
     const { loading, data } = useQuery(QUERY_ME);
-    let userData = data?.me || {};
     const [OpenProgram, setOpenProgram] = useState({});
+
+    let userData = data?.me || {};
+    //if (userData.programsCount) {
+    //    for (let i = 0; i < userData.programs.length; i++) {
+    //        const progId = userData.programs[i]._id;
+    //        const { loading: load2, error: err2, data: data2 } = useQuery(QUERY_PROGRAMS, {
+    //            variables:{ progId },
+    //        });
+    //        if (!load2 && !err2) {
+    //            userData.programs[i]
+    //        }
+    //    }
+    //    
+    //}
 
     const handleOpenProgram = (prog) => {
         setOpenProgram(prog);
@@ -25,9 +38,7 @@ const MyPrograms = () => {
 
     if (loading) {
         return <Spinner animation="border" variant="primary" />;
-    }
-
-    else {
+    } else {
         console.log(userData);
     }
 
