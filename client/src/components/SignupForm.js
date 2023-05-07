@@ -54,7 +54,7 @@ const SignupForm = () => {
       {/* This is needed for the validation functionality above */}
       <form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
-        {showAlert && <Alert variant='standard' severity='error' color='error'>
+        {showAlert && <Alert variant='standard' severity='error' color='error' sx={{mb:2}}>
           Something went wrong with your signup!
         </Alert>}
 
