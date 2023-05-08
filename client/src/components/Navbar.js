@@ -21,23 +21,39 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import CloseIcon from '@mui/icons-material/Close';
 
+// Apollo imports
+import { useQuery } from "@apollo/client";
+
 // Internal imports
 import Auth from '../utils/auth';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+import { QUERY_ME } from "../utils/queries";
 
 // Define items for nav and settings menu
 const pages = ['Home', 'Login / Signup'];
-const settings = ['Account', 'Logout'];
+// const pages = [
+//   {
+//     name: 'Home',
+//     path: '/',
+//     onClick: ''
+//   },
+//   {
+//     name: 'Login / Signup',
+//     path: '',
+//     onClick: ''
+//   }
+// ];
+const settings = ['Logout'];
 
 function AppNavbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   // Modal state
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openModal, setModalOpen] = useState(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
 
   // Login and signup form state
   const [form, setForm] = useState('login');
@@ -77,7 +93,21 @@ function AppNavbar() {
   // Close nav menu and open modal
   const handleNavCloseModalOpen = () => {
     handleCloseNavMenu();
-    handleOpen();
+    handleModalOpen();
+  }
+
+  // Close setting menu and logout
+  const handleUserCloseLogout = () => {
+    handleCloseUserMenu();
+    Auth.logout();
+  }
+
+  // Get user's full name
+  const { data } = useQuery(QUERY_ME);
+
+  let fullName = '';
+  if (data) {
+    fullName = data.me.firstName + ' ' + data.me.lastName;
   }
 
   return (
@@ -132,12 +162,15 @@ function AppNavbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                // TODO: Make modal open only on when login/signup button is clicked
-                <MenuItem key={page} onClick={handleNavCloseModalOpen}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem component={Link} to='/' key='Home' onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+              {Auth.loggedIn() && <MenuItem component={Link} to='programs/' key='My Programs' onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">My Programs</Typography>
+              </MenuItem>}
+              {!Auth.loggedIn() && <MenuItem key='Login / Signup' onClick={handleNavCloseModalOpen}>
+                <Typography textAlign="center">Login / Signup</Typography>
+              </MenuItem>}
             </Menu>
           </Box>
           <FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }} />
@@ -159,23 +192,33 @@ function AppNavbar() {
             Fitness Focus
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} justifyContent="flex-end">
-            {pages.map((page) => (
-              // TODO: Make modal open only on when login/signup button is clicked
-              <Button
-                key={page}
-                onClick={handleOpen}
-                sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              key='Home'
+              href='/'
+             sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+            >
+              Home
+            </Button>
+            {Auth.loggedIn() && <Button
+              key='My Programs'
+              href='programs/'
+             sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+            >
+              My Programs
+            </Button>}
+            {!Auth.loggedIn() && <Button
+              key='Login / Signup'
+              onClick={handleModalOpen}
+              sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+            >
+              Login / Signup
+            </Button>}
           </Box>
                     
             {Auth.loggedIn() && <Box sx={{ flexGrow: 0, ml: 2 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  {/* TODO: Adjust alt tag based on signed in user  */}
-                  <Avatar alt="Some User" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={fullName} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -195,7 +238,7 @@ function AppNavbar() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem key={setting} onClick={handleUserCloseLogout}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
@@ -204,8 +247,8 @@ function AppNavbar() {
         </Toolbar>
       </Container>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={openModal}
+        onClose={handleModalClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -234,7 +277,7 @@ function AppNavbar() {
             <ToggleButton value="signup">Signup</ToggleButton>
           </ToggleButtonGroup>
           <CloseIcon 
-            onClick={handleClose} 
+            onClick={handleModalClose} 
             sx={{float:'right', position:'relative', top:12, '&:hover': {cursor:'pointer'}}}  
           >
 
