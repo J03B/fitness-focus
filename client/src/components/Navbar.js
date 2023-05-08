@@ -162,12 +162,15 @@ function AppNavbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                // TODO: Make modal open only on when login/signup button is clicked
-                <MenuItem key={page} onClick={handleNavCloseModalOpen}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem component={Link} to='/' key='Home' onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Home</Typography>
+              </MenuItem>
+              {Auth.loggedIn() && <MenuItem component={Link} to='programs/' key='My Programs' onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">My Programs</Typography>
+              </MenuItem>}
+              {!Auth.loggedIn() && <MenuItem key='Login / Signup' onClick={handleNavCloseModalOpen}>
+                <Typography textAlign="center">Login / Signup</Typography>
+              </MenuItem>}
             </Menu>
           </Box>
           <FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }} />
@@ -189,16 +192,27 @@ function AppNavbar() {
             Fitness Focus
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} justifyContent="flex-end">
-            {pages.map((page) => (
-              // TODO: Make modal open only on when login/signup button is clicked
-              <Button
-                key={page}
-                onClick={handleModalOpen}
-                sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              key='Home'
+              href='/'
+             sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+            >
+              Home
+            </Button>
+            {Auth.loggedIn() && <Button
+              key='My Programs'
+              href='programs/'
+             sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+            >
+              My Programs
+            </Button>}
+            {!Auth.loggedIn() && <Button
+              key='Login / Signup'
+              onClick={handleModalOpen}
+              sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+            >
+              Login / Signup
+            </Button>}
           </Box>
                     
             {Auth.loggedIn() && <Box sx={{ flexGrow: 0, ml: 2 }}>
