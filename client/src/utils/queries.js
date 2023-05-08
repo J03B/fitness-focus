@@ -17,7 +17,7 @@ export const QUERY_ME = gql`
 
 //  programs(id: ID!): Program
 export const QUERY_PROGRAMS = gql`
-  query getPrograms($progId: ID) {
+  query getPrograms($progId: ID!) {
     programs(id: $progId) {
       _id
       name
@@ -33,7 +33,7 @@ export const QUERY_PROGRAMS = gql`
 
 //  phases(id: ID!): Phase
 export const QUERY_PHASES = gql`
-  query getPhases($phaseId: ID) {
+  query getPhases($phaseId: ID!) {
     programs(id: $phaseId) {
       _id
       name
@@ -50,7 +50,7 @@ export const QUERY_PHASES = gql`
 
 //  workouts(id: ID!): Workout
 export const QUERY_WORKOUTS = gql`
-  query getWorkouts($workId: ID) {
+  query getWorkouts($workId: ID!) {
     workouts(id: $workId) {
       _id
       name
@@ -67,7 +67,7 @@ export const QUERY_WORKOUTS = gql`
 
 //  exercise(id: ID!): Exercise
 export const QUERY_EXERCISES = gql`
-  query getExercises($exerId: ID) {
+  query getExercises($exerId: ID!) {
     exercises(id: $exerId) {
       _id
       name
