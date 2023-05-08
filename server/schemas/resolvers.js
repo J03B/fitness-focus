@@ -17,19 +17,19 @@ const resolvers = {
 
     // programs(id: ID!): Program
     programs: async (parent, args, context, info) => {
-      return Program.find((prog) => prog._id === args._id);
+      return Program.findOne({ _id: args.id});
     },
     // phases(id: ID!): Phase
     phases: async (parent, args, context, info) => {
-      return Phase.find((prog) => prog._id === args._id);
+      return Phase.findOne({ _id: args.id});
     },
     // workouts(id: ID!): Workout
     workouts: async (parent, args, context, info) => {
-      return Workout.find((prog) => prog._id === args._id);
+      return Workout.findOne({ _id: args.id});
     },
     // exercise(id: ID!): Exercise
     exercise: async (parent, args, context, info) => {
-      return Exercise.find((prog) => prog._id === args._id);
+      return Exercise.findOne({ _id: args.id});
     },
   },
 

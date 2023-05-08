@@ -18,18 +18,29 @@ const MyPrograms = () => {
     const [OpenProgram, setOpenProgram] = useState({});
 
     let userData = data?.me || {};
-    //if (userData.programsCount) {
-    //    for (let i = 0; i < userData.programs.length; i++) {
-    //        const progId = userData.programs[i]._id;
-    //        const { loading: load2, error: err2, data: data2 } = useQuery(QUERY_PROGRAMS, {
-    //            variables:{ progId },
-    //        });
-    //        if (!load2 && !err2) {
-    //            userData.programs[i]
-    //        }
-    //    }
-    //    
-    //}
+
+    const ProgramCard = ({ progId }) => {
+        const { loading: load2, error: err2, data: data2 } = useQuery(QUERY_PROGRAMS, {
+            variables: { progId: progId },
+        });
+        let progData = data2?.programs || {};
+        if (load2) { return 'Loading...' };
+        if (err2) { return `Error!... ${err2 + ' ' + progData}` };
+
+        return (
+            <Card key={progId} bg='dark' border='light'>
+                {progData.image ? <Card.Img src={progData.image} alt={`The cover for ${progData.name}`} variant='top' /> : null}
+                <Card.Body>
+                    <Card.Title>{progData.name}</Card.Title>
+                    <p className='small'>Program Type: {progData.phasesCount} Phases</p>
+                    <Card.Text>{progData.description}</Card.Text>
+                    <Button className='btn-block btn-primary' onClick={() => handleOpenProgram(progData)}>
+                        Open this program!
+                    </Button>
+                </Card.Body>
+            </Card>
+        );
+    }
 
     const handleOpenProgram = (prog) => {
         setOpenProgram(prog);
@@ -57,17 +68,7 @@ const MyPrograms = () => {
                     {userData.programs.map((program) => {
                         return (
                             <Col key={program._id} md="4">
-                                <Card key={program._id} border='dark'>
-                                    {program.image ? <Card.Img src={program.image} alt={`The cover for ${program.name}`} variant='top' /> : null}
-                                    <Card.Body>
-                                        <Card.Title>{program.name}</Card.Title>
-                                        <p className='small'>Program Type: {program.phasesCount} Phases</p>
-                                        <Card.Text>{program.description}</Card.Text>
-                                        <Button className='btn-block btn-primary' onClick={() => handleOpenProgram(program)}>
-                                            Open this program!
-                                        </Button>
-                                    </Card.Body>
-                                </Card>
+                                <ProgramCard progId={program._id} />
                             </Col>
                         );
                     })}
