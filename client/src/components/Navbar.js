@@ -104,10 +104,10 @@ function AppNavbar() {
 
   // Get user's full name
   const { data } = useQuery(QUERY_ME);
-
+  let userData = data?.me
   let fullName = '';
-  if (data) {
-    fullName = data.me.firstName + ' ' + data.me.lastName;
+  if (userData) {
+    fullName = userData.firstName + ' ' + userData.lastName;
   }
 
   return (
