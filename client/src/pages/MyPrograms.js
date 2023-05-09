@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Container,
     Col,
-    Form,
-    Button,
-    Card,
     Row,
     Spinner
 } from 'react-bootstrap';
+
+import {
+    Button,
+    Container,
+    Card,
+    CardContent,
+    CardActions,
+    CardMedia,
+    Skeleton
+ } from '@mui/material';
+
 import Auth from '../utils/auth';
 
 import { useQuery } from "@apollo/client";
@@ -28,16 +35,19 @@ const MyPrograms = () => {
         if (err2) { return `Error!... ${err2 + ' ' + progData}` };
 
         return (
-            <Card key={progId} bg='dark' border='light'>
-                {progData.image ? <Card.Img src={`/images/${progData.image}`} alt={`The cover for ${progData.name}`} variant='top' /> : null}
-                <Card.Body>
-                    <Card.Title>{progData.name}</Card.Title>
+            <Card key={progId} variant='outlined'>
+                {progData.image && <CardMedia sx={{ height: 300}} image={`/images/${progData.image}`} alt={`The cover for ${progData.name}`}>
+                </CardMedia>}
+                <CardContent sx={{ borderTop: '1px solid rgba(255, 255, 255, 0.12)'}}>
+                    {progData.name}
                     <p className='small'>Program Type: {progData.phasesCount} Phases</p>
-                    <Card.Text>{progData.description}</Card.Text>
+                    {progData.description}
+                </CardContent>
+                <CardActions>
                     <Button className='btn-block btn-primary' onClick={() => handleOpenProgram(progId)}>
-                        Open this program!
+                        Open Program
                     </Button>
-                </Card.Body>
+                </CardActions>
             </Card>
         );
     }
