@@ -34,7 +34,7 @@ export const QUERY_PROGRAMS = gql`
 //  phases(id: ID!): Phase
 export const QUERY_PHASES = gql`
   query getPhases($phaseId: ID!) {
-    programs(id: $phaseId) {
+    phases(id: $phaseId) {
       _id
       name
       description

@@ -12,7 +12,7 @@ import {Container} from '@mui/material'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 
-const Workout = (props) => {
+const StartWorkout = (props) => {
     // Global defined variables
     let totalSets = 0;
     for (let i = 0; i < props.exercisesCount - 1; i++) {
@@ -60,4 +60,4 @@ const Workout = (props) => {
     );
 };
 
-export default Workout;
+export default StartWorkout;

@@ -25,6 +25,7 @@ db.once('open', async () => {
         {
             name: 'Standing Barbell Press',
             description: '',
+            image: 'barbell-shoulder-press.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 120,
@@ -36,6 +37,7 @@ db.once('open', async () => {
         {
             name: 'Weighted Chin-ups',
             description: '',
+            image: 'chin-ups.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 45,
@@ -47,6 +49,7 @@ db.once('open', async () => {
         {
             name: 'One Arm Overhead Tricep Extensions',
             description: '',
+            image: 'one-arm-overhead.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 45,
@@ -58,6 +61,7 @@ db.once('open', async () => {
         {
             name: 'Leaning Lateral Raises',
             description: '',
+            image: 'leaning-lateral-raise.jpg',
             position: 4,
             goalReps: 8,
             goalWeight: 45,
@@ -71,6 +75,7 @@ db.once('open', async () => {
         {
             name: 'Bulgarian Split Squats',
             description: '',
+            image: 'bulgarian-split-squat.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 120,
@@ -82,6 +87,7 @@ db.once('open', async () => {
         {
             name: 'Romanian Deadlifts',
             description: '',
+            image: 'romanian-deadlift.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 400,
@@ -93,6 +99,7 @@ db.once('open', async () => {
         {
             name: 'Single Leg Hip Thrusts',
             description: '',
+            image: 'hip-thrust.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 45,
@@ -104,6 +111,7 @@ db.once('open', async () => {
         {
             name: 'DB Leaning Shrugs',
             description: '',
+            image: 'leaning-shrug.jpg',
             position: 4,
             goalReps: 8,
             goalWeight: 45,
@@ -117,6 +125,7 @@ db.once('open', async () => {
         {
             name: 'Incline Bench Press',
             description: '',
+            image: 'incline-bench.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 360,
@@ -128,6 +137,7 @@ db.once('open', async () => {
         {
             name: 'Pinned Hammer Bicep Curls',
             description: '',
+            image: 'pinned-curls.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 45,
@@ -139,6 +149,7 @@ db.once('open', async () => {
         {
             name: 'Bent Over Flys',
             description: '',
+            image: 'bent-over-flys.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 45,
@@ -148,8 +159,9 @@ db.once('open', async () => {
             exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
         },
         {
-            name: 'Hanging Knee Raises',
+            name: 'Hanging Leg Raises',
             description: '',
+            image: 'hanging-leg-raise.jpg',
             position: 4,
             goalReps: 20,
             goalWeight: 0,
@@ -163,6 +175,7 @@ db.once('open', async () => {
         {
             name: 'DB Shoulder Press',
             description: '',
+            image: 'db-shoulder-press.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 70,
@@ -174,6 +187,7 @@ db.once('open', async () => {
         {
             name: 'Weighted Pull-ups/Sternum-ups',
             description: 'Do two sets of pull ups, then two sets of sternum ups',
+            image: 'pull-up.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 45,
@@ -185,6 +199,7 @@ db.once('open', async () => {
         {
             name: 'Triceps Cable Pushdowns',
             description: '',
+            image: 'tricep-pushdown.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 60,
@@ -196,6 +211,7 @@ db.once('open', async () => {
         {
             name: 'Upright Rows',
             description: '',
+            image: 'upright-row.jpg',
             position: 4,
             goalReps: 12,
             goalWeight: 35,
@@ -209,6 +225,7 @@ db.once('open', async () => {
         {
             name: 'Machine Calf Raises',
             description: '',
+            image: 'machine-calf-raise.jpg',
             position: 1,
             goalReps: 12,
             goalWeight: 250,
@@ -220,6 +237,7 @@ db.once('open', async () => {
         {
             name: 'Sumo Deadlifts',
             description: '',
+            image: 'sumo-deadlift.jpg',
             position: 2,
             goalReps: 6,
             goalWeight: 400,
@@ -231,6 +249,7 @@ db.once('open', async () => {
         {
             name: 'Walking DB Lunges/Leg Curl Superset',
             description: '',
+            image: 'dumbbell-lunges.jpg',
             position: 3,
             goalReps: 12,
             goalWeight: 45,
@@ -242,6 +261,7 @@ db.once('open', async () => {
         {
             name: 'One Arm Cable Shrugs',
             description: '',
+            image: 'leaning-shrug.jpg',
             position: 4,
             goalReps: 8,
             goalWeight: 45,
@@ -255,6 +275,7 @@ db.once('open', async () => {
         {
             name: 'Incline DB Press',
             description: '',
+            image: 'incline-dumbbell-bench.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 110,
@@ -266,6 +287,7 @@ db.once('open', async () => {
         {
             name: 'Weighted Dips',
             description: '',
+            image: 'weighted-dips.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 145,
@@ -277,6 +299,7 @@ db.once('open', async () => {
         {
             name: 'Incline Curls',
             description: '',
+            image: 'incline-dumbbell-curl.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 45,
@@ -288,6 +311,7 @@ db.once('open', async () => {
         {
             name: 'Face Pulls/Hanging Knee Raises',
             description: 'Super Set these - same reps',
+            image: 'hanging-leg-raise.jpg',
             position: 4,
             goalReps: 20,
             goalWeight: 45,
@@ -301,6 +325,7 @@ db.once('open', async () => {
         {
             name: 'Barbell Shoulder Press',
             description: '',
+            image: 'barbell-shoulder-press.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 135,
@@ -312,6 +337,7 @@ db.once('open', async () => {
         {
             name: 'Weighted chin-ups',
             description: '',
+            image: 'chin-ups.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 65,
@@ -323,6 +349,7 @@ db.once('open', async () => {
         {
             name: 'One Arm Cable Pushdowns',
             description: '',
+            image: 'tricep-pushdown.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 45,
@@ -334,6 +361,7 @@ db.once('open', async () => {
         {
             name: 'Incline Lateral Raise',
             description: '',
+            image: 'leaning-lateral-raise.jpg',
             position: 4,
             goalReps: 10,
             goalWeight: 45,
@@ -347,6 +375,7 @@ db.once('open', async () => {
         {
             name: 'Calf Raises',
             description: '',
+            image: 'machine-calf-raise.jpg',
             position: 1,
             goalReps: 20,
             goalWeight: 200,
@@ -358,6 +387,7 @@ db.once('open', async () => {
         {
             name: 'Bulgarian Split Squats',
             description: '',
+            image: 'bulgarian-split-squat.jpg',
             position: 2,
             goalReps: 10,
             goalWeight: 60,
@@ -369,6 +399,7 @@ db.once('open', async () => {
         {
             name: 'Romanian Deadlifts',
             description: '',
+            image: 'romanian-deadlift.jpg',
             position: 3,
             goalReps: 10,
             goalWeight: 245,
@@ -380,6 +411,7 @@ db.once('open', async () => {
         {
             name: 'Leg Extension/Curl/Shrug Ultra Set',
             description: 'Super set Leg Extensions, leg curls, and DB Leaning Shrugs all back to back',
+            image: 'leg-extensions.jpg',
             position: 4,
             goalReps: 8,
             goalWeight: 245,
@@ -393,6 +425,7 @@ db.once('open', async () => {
         {
             name: 'Incline/Flat Barbell Bench',
             description: 'First do two sets of Incline, then two sets of Flat Back',
+            image: 'barbell-bench-press.jpg',
             position: 1,
             goalReps: 8,
             goalWeight: 380,
@@ -404,6 +437,7 @@ db.once('open', async () => {
         {
             name: 'Concentration/Pinwheel Curls',
             description: '4 sets of each, alternating',
+            image: 'model-bicep-curls.jpg',
             position: 2,
             goalReps: 8,
             goalWeight: 45,
@@ -415,6 +449,7 @@ db.once('open', async () => {
         {
             name: 'Incline Flys Cross Overs',
             description: '',
+            image: 'crossovers.jpg',
             position: 3,
             goalReps: 8,
             goalWeight: 65,
@@ -426,6 +461,7 @@ db.once('open', async () => {
         {
             name: 'Rear Delt Flys',
             description: '',
+            image: 'bent-over-flys.jpg',
             position: 4,
             goalReps: 10,
             goalWeight: 45,
@@ -440,6 +476,7 @@ db.once('open', async () => {
         {
             name: 'Standard Pushups',
             description: '',
+            image: 'standard-pushup.jpg',
             position: 1,
             goalReps: 30,
             goalWeight: 0,
@@ -451,6 +488,7 @@ db.once('open', async () => {
         {
             name: 'Wide Front Pull Ups',
             description: '',
+            image: 'pull-up.jpg',
             position: 2,
             goalReps: 16,
             goalWeight: 0,
@@ -462,6 +500,7 @@ db.once('open', async () => {
         {
             name: 'Military Push Ups',
             description: '',
+            image: 'standard-pushup.jpg',
             position: 3,
             goalReps: 25,
             goalWeight: 0,
@@ -473,6 +512,7 @@ db.once('open', async () => {
         {
             name: 'Reverse Grip Chin Ups',
             description: '',
+            image: 'chin-ups.jpg',
             position: 4,
             goalReps: 15,
             goalWeight: 0,
@@ -483,7 +523,8 @@ db.once('open', async () => {
         },
         {
             name: 'Wide Fly Push Ups',
-            description: '',
+            description: 'hands wide apart',
+            image: 'standard-pushup.jpg',
             position: 5,
             goalReps: 25,
             goalWeight: 0,
@@ -494,7 +535,8 @@ db.once('open', async () => {
         },
         {
             name: 'Close Grip Overhand Pull Ups',
-            description: '',
+            description: 'Like a regular pull-up, but with your hands close together',
+            image: 'pull-up.jpg',
             position: 6,
             goalReps: 15,
             goalWeight: 0,
@@ -505,7 +547,8 @@ db.once('open', async () => {
         },
         {
             name: 'Decline Push Ups',
-            description: '',
+            description: 'legs on a stool or bench',
+            image: 'standard-pushup.jpg',
             position: 7,
             goalReps: 25,
             goalWeight: 0,
@@ -517,6 +560,7 @@ db.once('open', async () => {
         {
             name: 'Leaning DB Rows',
             description: '',
+            image: 'upright-row.jpg',
             position: 8,
             goalReps: 15,
             goalWeight: 50,
@@ -527,7 +571,8 @@ db.once('open', async () => {
         },
         {
             name: 'Diamond Push Ups',
-            description: '',
+            description: 'place your hands in a diamond/heart shape',
+            image: 'standard-pushup.jpg',
             position: 9,
             goalReps: 20,
             goalWeight: 0,
@@ -538,7 +583,8 @@ db.once('open', async () => {
         },
         {
             name: 'Lawnmower',
-            description: '',
+            description: 'bring your elbow farther out and higher than a row',
+            image: 'standard-pushup.jpg',
             position: 10,
             goalReps: 20,
             goalWeight: 80,
@@ -549,7 +595,8 @@ db.once('open', async () => {
         },
         {
             name: 'Dive-Bomber Push Ups',
-            description: '',
+            description: 'starting from downward dog, going under the fence into upward dog',
+            image: 'standard-pushup.jpg',
             position: 11,
             goalReps: 15,
             goalWeight: 0,
@@ -561,6 +608,7 @@ db.once('open', async () => {
         {
             name: 'Back Flys',
             description: '',
+            image: 'bent-over-flys.jpg',
             position: 3,
             goalReps: 12,
             goalWeight: 35,
@@ -578,25 +626,26 @@ db.once('open', async () => {
     ]);
 
     // Create Workout Model Data
+    const photoAttribution = 'Some images by Freepik, prostooleh, sergeycauselove, senivpetro, bristekjegor, pressfoto, and fxquadro on Freepik.com'
     const workout = await Workout.insertMany([
         // Prog 1 - Phase 1
         {
             name: 'Monday',
-            description: 'Focuses on shoulders, arms, and back.',
+            description: `Focuses on shoulders, arms, and back.\n${photoAttribution}`,
             position: 1,
             secBtwnExs: 120,
             exercises: [exercise[0]._id, exercise[1]._id, exercise[2]._id, exercise[3]._id]
         },
         {
             name: 'Wednesday',
-            description: 'Focuses on every part of the legs.',
+            description: `Focuses on every part of the legs.\n${photoAttribution}`,
             position: 2,
             secBtwnExs: 120,
             exercises: [exercise[4]._id, exercise[5]._id, exercise[6]._id, exercise[7]._id]
         },
         {
             name: 'Friday',
-            description: 'Focuses on the chest, biceps, and abs.',
+            description: `Focuses on the chest, biceps, and abs.\n${photoAttribution}`,
             position: 3,
             secBtwnExs: 120,
             exercises: [exercise[8]._id, exercise[9]._id, exercise[10]._id, exercise[11]._id]
@@ -605,21 +654,21 @@ db.once('open', async () => {
         // Prog 1 - Phase 2
         {
             name: 'Monday',
-            description: 'Focuses on shoulders, arms, and back.',
+            description: `Focuses on shoulders, arms, and back.\n${photoAttribution}`,
             position: 1,
             secBtwnExs: 120,
             exercises: [exercise[12]._id, exercise[13]._id, exercise[14]._id, exercise[15]._id]
         },
         {
             name: 'Wednesday',
-            description: 'Focuses on every part of the legs.',
+            description: `Focuses on every part of the legs.\n${photoAttribution}`,
             position: 2,
             secBtwnExs: 120,
             exercises: [exercise[16]._id, exercise[17]._id, exercise[18]._id, exercise[19]._id]
         },
         {
             name: 'Friday',
-            description: 'Focuses on the chest, biceps, and abs.',
+            description: `Focuses on the chest, biceps, and abs.\n${photoAttribution}`,
             position: 3,
             secBtwnExs: 120,
             exercises: [exercise[20]._id, exercise[21]._id, exercise[22]._id, exercise[23]._id]
@@ -628,21 +677,21 @@ db.once('open', async () => {
         // Prog 1 - Phase 3
         {
             name: 'Monday',
-            description: 'Focuses on shoulders, arms, and back.',
+            description: `Focuses on shoulders, arms, and back.\n${photoAttribution}`,
             position: 1,
             secBtwnExs: 120,
             exercises: [exercise[24]._id, exercise[25]._id, exercise[26]._id, exercise[26]._id]
         },
         {
             name: 'Wednesday',
-            description: 'Focuses on every part of the legs.',
+            description: `Focuses on every part of the legs.\n${photoAttribution}`,
             position: 2,
             secBtwnExs: 120,
             exercises: [exercise[27]._id, exercise[28]._id, exercise[29]._id, exercise[30]._id]
         },
         {
             name: 'Friday',
-            description: 'Focuses on the chest, biceps, and abs.',
+            description: `Focuses on the chest, biceps, and abs.\n${photoAttribution}`,
             position: 3,
             secBtwnExs: 120,
             exercises: [exercise[31]._id, exercise[32]._id, exercise[33]._id, exercise[34]._id]
@@ -751,13 +800,13 @@ db.once('open', async () => {
         {
             name: 'Lean Bulking 3000',
             description: 'Designed to take you from a normal body to the body of a Greek God',
-            image: '',
+            image: 'chest-day.jpg',
             phases: [phase[0]._id, phase[1]._id, phase[2]._id]
         },
         {
             name: '13 Week Xtra Chiseled',
             description: 'A combination of some of the most insane, X-like workouts out there',
-            image: '',
+            image: 'model-bicep-curls.jpg',
             phases: [phase[3]._id, phase[4]._id, phase[5]._id]
         }
     ]);
