@@ -10,6 +10,8 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
+import NoMatch from "./NoMatch";
+
 import { useQuery } from "@apollo/client";
 import { QUERY_PROGRAMS, QUERY_PHASES } from "../utils/queries";
 
@@ -20,6 +22,10 @@ const ProgramPhases = () => {
         variables: { progId: programId },
     });
 
+    if (error) {
+        return (<NoMatch />);
+    }
+    
     let progData = data?.programs;
 
     const PhaseCard = ({ phaseId }) => {

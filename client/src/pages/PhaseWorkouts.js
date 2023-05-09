@@ -10,6 +10,8 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 
+import NoMatch from "./NoMatch";
+
 import { useQuery } from "@apollo/client";
 import { QUERY_PHASES, QUERY_WORKOUTS } from "../utils/queries";
 
@@ -18,6 +20,10 @@ const PhaseWorkouts = () => {
     const { loading, error, data } = useQuery(QUERY_PHASES, {
         variables: { phaseId: phaseId },
     });
+
+    if (error) {
+        return (<NoMatch />);
+    }
 
     let phaseData = data?.phases;
 
