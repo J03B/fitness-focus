@@ -17,7 +17,6 @@ const StartWorkout = (props) => {
     let totalSets = 0;
     for (let i = 0; i < props.exercisesCount - 1; i++) {
         const exercise = props.exercise[i];
-
     }
 
     const [progressPercent, setProgressPercent] = useState(0);
