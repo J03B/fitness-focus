@@ -29,12 +29,12 @@ const MyPrograms = () => {
 
         return (
             <Card key={progId} bg='dark' border='light'>
-                {progData.image ? <Card.Img src={progData.image} alt={`The cover for ${progData.name}`} variant='top' /> : null}
+                {progData.image ? <Card.Img src={`/images/${progData.image}`} alt={`The cover for ${progData.name}`} variant='top' /> : null}
                 <Card.Body>
                     <Card.Title>{progData.name}</Card.Title>
                     <p className='small'>Program Type: {progData.phasesCount} Phases</p>
                     <Card.Text>{progData.description}</Card.Text>
-                    <Button className='btn-block btn-primary' onClick={() => handleOpenProgram(progData)}>
+                    <Button className='btn-block btn-primary' onClick={() => handleOpenProgram(progId)}>
                         Open this program!
                     </Button>
                 </Card.Body>
@@ -44,7 +44,7 @@ const MyPrograms = () => {
 
     const handleOpenProgram = (prog) => {
         setOpenProgram(prog);
-        window.location.assign('/');
+        window.location.assign(`/phases/${prog}`);
     }
 
     if (loading) {

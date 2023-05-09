@@ -17,6 +17,8 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import MyPrograms from './pages/MyPrograms';
 import StartWorkout from './pages/Workout';
+import ProgramPhases from './pages/ProgramPhases';
+import PhaseWorkouts from './pages/PhaseWorkouts';
 import NoMatch from './pages/NoMatch';
 
 // Set dark theme as the default
@@ -59,12 +61,20 @@ function App() {
                 element={<Home />}
               />
               <Route
-                path="/workout"
+                path="/exercise/:workoutId"
                 element={<StartWorkout />}
               />
               <Route
                 path="/programs"
                 element={<MyPrograms />}
+              />
+              <Route
+                path="/phases/:programId"
+                element={<ProgramPhases />}
+              />
+              <Route
+                path="/workouts/:phaseId"
+                element={<PhaseWorkouts />}
               />
               <Route
                 path="*"
