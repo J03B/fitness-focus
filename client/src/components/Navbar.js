@@ -20,6 +20,8 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import CloseIcon from '@mui/icons-material/Close';
+import Fade from '@mui/material/Fade';
+import Divider from '@mui/material/Divider';
 
 // Apollo imports
 import { useQuery } from '@apollo/client';
@@ -29,6 +31,7 @@ import Auth from '../utils/auth';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import { QUERY_ME } from '../utils/queries';
+import { red } from '@mui/material/colors';
 
 // Define items for settings menu
 const settings = ['Logout'];
@@ -97,6 +100,15 @@ function AppNavbar() {
     fullName = userData.firstName + ' ' + userData.lastName;
   }
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -162,6 +174,29 @@ function AppNavbar() {
                   <Typography textAlign="center">Login / Signup</Typography>
                 </MenuItem>
               )}
+              {Auth.loggedIn() && (
+                <Divider sx={{border: '2px solid white'}}/>
+              )}
+              {Auth.loggedIn() && (
+                <MenuItem component={Link} to="/add-program" key="Add Program" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Add Program</Typography>
+                </MenuItem>
+              )}
+              {Auth.loggedIn() && (
+                <MenuItem component={Link} to="/add-phase" key="Add Phase" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Add Phase</Typography>
+                </MenuItem>
+              )}
+              {Auth.loggedIn() && (
+                <MenuItem component={Link} to="/add-workout" key="Add Workout" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Add Workout</Typography>
+                </MenuItem>
+              )}
+              {Auth.loggedIn() && (
+                <MenuItem component={Link} to="/add-exercise" key="Add Exercise" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Add Exercise</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
           <FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }} />
@@ -191,14 +226,34 @@ function AppNavbar() {
                 My Programs
               </Button>
             )}
-            {!Auth.loggedIn() && (
+            {Auth.loggedIn() && (
               <Button
-                key="Login / Signup"
-                onClick={handleModalOpen}
+                id="fade-button"
+                aria-controls={open ? 'fade-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
                 sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
               >
-                Login / Signup
+                Add Item
               </Button>
+            )}
+            {Auth.loggedIn() && (
+              <Menu
+                id="fade-menu"
+                MenuListProps={{
+                  'aria-labelledby': 'fade-button',
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                TransitionComponent={Fade}
+              >
+                <MenuItem onClick={handleClose} component={Link} to="/add-program" key="Add Program">Program</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/add-phase" key="Add Phase">Phase</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/add-workout" key="Add Workout">Workout</MenuItem>
+                <MenuItem onClick={handleClose} component={Link} to="/add-exercise" key="Add Exercise">Exercise</MenuItem>
+              </Menu>
             )}
           </Box>
 
