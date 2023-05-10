@@ -41,7 +41,7 @@ const MyPrograms = () => {
     }
 
     return (
-      <Card key={progId} variant="outlined">
+      <Card key={progId} sx={{width: '350px'}} variant="outlined">
         {progData.image && (
           <CardMedia
             sx={{ height: 300 }}
@@ -55,7 +55,7 @@ const MyPrograms = () => {
           {progData.description}
         </CardContent>
         <CardActions>
-          <Button className="btn-block btn-primary" onClick={() => handleOpenProgram(progId)}>
+          <Button className="btn-block btn-primary" sx={{margin:'auto'}} onClick={() => handleOpenProgram(progId)}>
             Open Program
           </Button>
         </CardActions>
@@ -81,13 +81,13 @@ const MyPrograms = () => {
           Viewing Your Workout Programs
         </Typography>
       </Container>
-      <Container>
-        <h2 className="pt-5">
+      <Container sx={{textAlign: 'center'}}>
+        <h2 className="my-4">
           {userData.programsCount
             ? `Viewing ${userData.programsCount} saved ${userData.programsCount === 1 ? 'program' : 'programs'}:`
             : 'You have no saved programs!'}
         </h2>
-        <Stack direction="row" flexWrap="wrap" justifyContent="center" gap={4}>
+        <Stack direction="row" flexWrap="wrap" justifyContent="center" gap={4} sx={{my:'20px'}}>
           {userData.programs.map((program) => {
             return <ProgramCard progId={program._id} />;
           })}
