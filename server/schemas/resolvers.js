@@ -77,9 +77,9 @@ const resolvers = {
     // addProgram(name: String!, description: String, image: String): Program
     addProgram: async (parent, args, context) => {
       if (context.user) {
-        const data = new Program(args);
-        await User.findByIdAndUpdate(context.user._id, { $push: { programs: data } });
-        return data;
+        const newProgram = await Program.create(args);
+        await User.findByIdAndUpdate(context.user._id, { $push: { programs: newProgram.id } });
+        return newProgram;
       }
     },
     // updateGoals(_id: ID!, goalReps: Int!, goalWeight: Int!, goalUnits: String): Exercise

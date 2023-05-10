@@ -226,6 +226,15 @@ function AppNavbar() {
                 My Programs
               </Button>
             )}
+            {!Auth.loggedIn() && (
+              <Button
+                key="Login / Signup"
+                onClick={handleModalOpen}
+                sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+              >
+                Login / Signup
+              </Button>
+            )}
             {Auth.loggedIn() && (
               <Button
                 id="fade-button"
