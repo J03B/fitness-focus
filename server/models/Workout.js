@@ -45,10 +45,11 @@ workoutSchema.virtual('exercisesCount').get(function () {
 workoutSchema.virtual('totalSetsCount').get(function () {
   let totSets = 0;
   for (let i = 0; i < this.exercises.length - 1; i++) {
-    const el = this.exercises[i];
-    totSets += el.numSets;
+    const exId = this.exercises[i];
+    const exModel = Exercise.findOne({ _id: exId});
+    totSets += exModel.numSets;
   }
-  return totSets;
+  return totSets || 0;
 });
 
 const Workout = mongoose.model('Workout', workoutSchema);

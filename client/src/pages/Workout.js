@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import { Container } from '@mui/material'
-import Stack from '@mui/material/Stack';
 import TimelineIcon from '@mui/icons-material/Timeline';
+import Stack from '@mui/material/Stack';
 
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import NoMatch from "./NoMatch";
+import ExerciseHeader from '../components/exerciseComponents/ExerciseHeader';
+import ExDataForm from '../components/exerciseComponents/ExDataForm';
 
 import { useQuery } from "@apollo/client";
 import { QUERY_WORKOUTS, QUERY_EXERCISES } from "../utils/queries";
@@ -19,7 +18,10 @@ import { QUERY_WORKOUTS, QUERY_EXERCISES } from "../utils/queries";
 const StartWorkout = () => {
     let { workoutId } = useParams();
     const [progressPercent, setProgressPercent] = useState(0);
+    const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+    const [allExercises, setAllExercises] = useState([])
     const [currentExercise, setCurrentExercise] = useState({});
+    const [currentSetNum, setCurrentSetNum] = useState(1)
     const [finishButton, setFinishButton] = useState(false);
     const [onRestBtwnExs, setOnRestBtwnExs] = useState(false);
 
@@ -27,74 +29,96 @@ const StartWorkout = () => {
         variables: { workId: workoutId },
     });
 
-    if (error) { return (<NoMatch />) };
     if (loading) { return (<CircularProgress />) };
-    
-    let workData = data?.workouts || {};
+    if (error) { return (<NoMatch />) };
 
-    // Global defined variables
-    let totalSets = 0;
-    for (let i = 0; i < workData.exercisesCount - 1; i++) {
-        const exercise = workData.exercise[i];
+    let workData = data?.workouts || {};
+    console.log(workData);
+
+    const viewPreviousData = () => {
+
     }
 
     const handleNextButton = () => {
         // If last workout was just finished, go to the finish workout page
-
-        // Calculate the percent done for the progress bar
-        const percentDone = currentExercise.position / workData.exercisesCount;
-        setProgressPercent(percentDone);
-        if (percentDone) {
-            setFinishButton(true);
-        }
+        //if (progressPercent >= 100) {
+        //    setFinishButton(true);
+        //    return;
+        //}
+//
+        //// Move on to the next exercise (first check set Num, then adjust exercise)
+        //if (currentSetNum < currentExercise.numSets) {
+        //    setCurrentSetNum(currentSetNum + 1);
+        //} else {
+        //    setCurrentExerciseIndex(currentExerciseIndex + 1);
+        //    setCurrentExercise(allExercises[currentExerciseIndex]);
+        //}
+//
+        //// Calculate the percent done for the progress bar
+        //setProgressPercent(Math.min(progressPercent + (100 / workData.totalSetsCount), 100));
+        //if (progressPercent > 99.9) {
+        //    setFinishButton(true);
+        //}
     }
 
-    const ExerciseHeader = (exerId) => {
-        const { loading: l2, error: e2, data: d2 } = useQuery(QUERY_EXERCISES, {
-            variables: { exerId: exerId },
-        });
-        let exerData = d2?.exercises || {};
-        if (l2) { return (<CircularProgress />) };
-        if (e2) { return 'ERROR...' };
+    const handlePreviousButton = () => {
 
+    }
+
+    const getLastComment = (exerData) => {
+        // const lastIndex = exerData.exDatasCount - 1;
+        return 'No previous comment'; // exerData.exDatas[lastIndex].comment || 'No previous comment';
+    }
+
+
+    const QueryContainer = ({exId}) => {
+        const { loading: l2, error: e2, data: d2 } = useQuery(QUERY_EXERCISES, {
+            variables: { exerId: exId },
+        });
+        let exerData = d2?.exercise || {};
+        if (l2) { return (<CircularProgress />) };
+        if (e2) { return (`Error... ${e2.message} |`) };
+        // setAllExercises({ ...allExercises, exerData });
+        console.log(exerData);
         return (
-            <>
-                <Stack spacing={1}>
-                    <Typography variant='h5'>
-                        {exerData.name}
-                    </Typography>
-                    <Avatar sx={{ width: "85%", height: "85%", maxWidth: 400, maxHeight: 400 }} src={`/images/${exerData.image}`} />
-                    <Typography variant='subtitle1'>
-                        {exerData.description}
-                    </Typography>
-                </Stack>
-            </>
+            <div display={currentExerciseIndex==exerData.position ? 'none' : 'block'}>
+                {/* Exercise Header for the current workout */}
+                <ExerciseHeader
+                    exName={exerData.name}
+                    exImage={exerData.image}
+                    exDescription={exerData.description}
+                />
+
+                {/* Icon to bring forward the past data for the same workout */}
+                <TimelineIcon onClick={() => viewPreviousData(exerData)} />
+
+                {/* Form to enter the current exercise's ExData and move between exercises*/}
+                <ExDataForm
+                    prevComment={() => getLastComment(exerData)}
+                    handleFormSubmit={() => handleNextButton()}
+                    handlePrevButton={() => handlePreviousButton()}
+                />
+            </ div>
         );
     }
 
-    const PreviousData = (exercise) => {
-
-    }
-
     return (
-        <>
+        <Stack>
             {/* Show progress bar at the top */}
             <Box sx={{ width: '100%' }}>
                 <LinearProgress variant="determinate" value={progressPercent} />
             </Box>
 
-            {/* Exercise Header for the current workout */}
-            <ExerciseHeader exerId={currentExercise.id} />
-
-            {/* Icon to bring forward the past data for the same workout */}
-            <TimelineIcon onClick={() => PreviousData(currentExercise)}/>
-
-            {/* Form to enter the current exercise's ExData */}
-
-            {/* Buttons to go to the previous and next parts of the workout */}
-
-            {/* Progress Bar to show how much time is left */}
-        </>
+            {workData.exercises.map((exId) => {
+                return (
+                    <div key={exId._id}>
+                        <QueryContainer
+                            exId={exId._id}
+                        />
+                    </ div>
+                );
+            })}
+        </Stack>
     );
 };
 
