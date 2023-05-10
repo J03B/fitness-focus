@@ -59,29 +59,29 @@ const PhaseWorkouts = () => {
     if (loading) { return (<CircularProgress />) };
 
     return (
-        <>
-            <Container >
-                <Typography variant="h3" component="div">
-                    {phaseData.name}
-                </Typography>
-            </Container>
-            <Container>
-                <Typography variant="h4" component="div">
-                    {phaseData.workoutsCount
-                        ? `Viewing ${phaseData.workoutsCount} saved ${phaseData.workoutsCount === 1 ? 'workout' : 'workouts'}:`
-                        : 'You have no saved programs!'}
-                </Typography>
-                <Stack>
-                    {phaseData.workouts.map((work) => {
-                        return (
-                            <div key={work._id}>
-                                <PhaseCard workId={work._id} />
-                            </div>
-                        );
-                    })}
-                </Stack>
-            </Container>
-        </>
+      <>
+        <Container>
+          <Typography variant="h3" component="div" textAlign={'center'} marginTop={6}>
+            {phaseData.name}
+          </Typography>
+        </Container>
+        <Container>
+          <Typography variant="h4" component="div" textAlign={'center'} marginTop={2}>
+            {phaseData.workoutsCount
+              ? `Viewing ${phaseData.workoutsCount} saved ${phaseData.workoutsCount === 1 ? 'workout' : 'workouts'}:`
+              : 'You have no saved programs!'}
+          </Typography>
+          <Stack direction="row" flexWrap="wrap" justifyContent='center'>
+            {phaseData.workouts.map((work) => {
+              return (
+                <div key={work._id}>
+                  <PhaseCard workId={work._id} />
+                </div>
+              );
+            })}
+          </Stack>
+        </Container>
+      </>
     );
 };
 

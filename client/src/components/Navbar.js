@@ -22,28 +22,15 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import CloseIcon from '@mui/icons-material/Close';
 
 // Apollo imports
-import { useQuery } from "@apollo/client";
+import { useQuery } from '@apollo/client';
 
 // Internal imports
 import Auth from '../utils/auth';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_ME } from '../utils/queries';
 
-// Define items for nav and settings menu
-const pages = ['Home', 'Login / Signup'];
-// const pages = [
-//   {
-//     name: 'Home',
-//     path: '/',
-//     onClick: ''
-//   },
-//   {
-//     name: 'Login / Signup',
-//     path: '',
-//     onClick: ''
-//   }
-// ];
+// Define items for settings menu
 const settings = ['Logout'];
 
 function AppNavbar() {
@@ -63,10 +50,10 @@ function AppNavbar() {
   // Set which form to display in modal
   const handleChange = (event, newForm) => {
     setForm(newForm);
-    if (newForm == 'signup') {
+    if (newForm === 'signup') {
       setShowSignup(true);
       setShowLogin(false);
-    } else if (newForm == 'login') {
+    } else if (newForm === 'login') {
       setShowLogin(true);
       setShowSignup(false);
     }
@@ -94,17 +81,17 @@ function AppNavbar() {
   const handleNavCloseModalOpen = () => {
     handleCloseNavMenu();
     handleModalOpen();
-  }
+  };
 
   // Close setting menu and logout
   const handleUserCloseLogout = () => {
     handleCloseUserMenu();
     Auth.logout();
-  }
+  };
 
   // Get user's full name
   const { data } = useQuery(QUERY_ME);
-  let userData = data?.me
+  let userData = data?.me;
   let fullName = '';
   if (userData) {
     fullName = userData.firstName + ' ' + userData.lastName;
@@ -127,7 +114,7 @@ function AppNavbar() {
               letterSpacing: '.2rem',
               color: 'inherit',
               textDecoration: 'none',
-              '&:hover': {color:'inherit'}
+              '&:hover': { color: 'inherit' },
             }}
           >
             Fitness Focus
@@ -162,15 +149,19 @@ function AppNavbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MenuItem component={Link} to='/' key='Home' onClick={handleCloseNavMenu}>
+              <MenuItem component={Link} to="/" key="Home" onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">Home</Typography>
               </MenuItem>
-              {Auth.loggedIn() && <MenuItem component={Link} to='programs/' key='My Programs' onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">My Programs</Typography>
-              </MenuItem>}
-              {!Auth.loggedIn() && <MenuItem key='Login / Signup' onClick={handleNavCloseModalOpen}>
-                <Typography textAlign="center">Login / Signup</Typography>
-              </MenuItem>}
+              {Auth.loggedIn() && (
+                <MenuItem component={Link} to="/programs" key="My Programs" onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">My Programs</Typography>
+                </MenuItem>
+              )}
+              {!Auth.loggedIn() && (
+                <MenuItem key="Login / Signup" onClick={handleNavCloseModalOpen}>
+                  <Typography textAlign="center">Login / Signup</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
           <FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }} />
@@ -192,30 +183,27 @@ function AppNavbar() {
             Fitness Focus
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} justifyContent="flex-end">
-            <Button
-              key='Home'
-              href='/'
-             sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
-            >
+            <Button key="Home" href="/" sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}>
               Home
             </Button>
-            {Auth.loggedIn() && <Button
-              key='My Programs'
-              href='programs/'
-             sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
-            >
-              My Programs
-            </Button>}
-            {!Auth.loggedIn() && <Button
-              key='Login / Signup'
-              onClick={handleModalOpen}
-              sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
-            >
-              Login / Signup
-            </Button>}
+            {Auth.loggedIn() && (
+              <Button key="My Programs" href="/programs" sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}>
+                My Programs
+              </Button>
+            )}
+            {!Auth.loggedIn() && (
+              <Button
+                key="Login / Signup"
+                onClick={handleModalOpen}
+                sx={{ my: 2, mx: 1, color: 'white', display: 'block' }}
+              >
+                Login / Signup
+              </Button>
+            )}
           </Box>
-                    
-            {Auth.loggedIn() && <Box sx={{ flexGrow: 0, ml: 2 }}>
+
+          {Auth.loggedIn() && (
+            <Box sx={{ flexGrow: 0, ml: 2 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt={fullName} src="/static/images/avatar/placeholder.jpg" />
@@ -243,7 +231,8 @@ function AppNavbar() {
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>}
+            </Box>
+          )}
         </Toolbar>
       </Container>
       <Modal
@@ -252,8 +241,8 @@ function AppNavbar() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={
-          {
+        <Box
+          sx={{
             position: 'absolute',
             top: '50%',
             left: '50%',
@@ -263,25 +252,23 @@ function AppNavbar() {
             border: '2px solid #000',
             boxShadow: 24,
             p: 4,
-          }
-        }>
+          }}
+        >
           <ToggleButtonGroup
             color="primary"
             value={form}
             exclusive
             onChange={handleChange}
             aria-label="Form Type"
-            sx={{ mb:2 }}
+            sx={{ mb: 2 }}
           >
             <ToggleButton value="login">Login</ToggleButton>
             <ToggleButton value="signup">Signup</ToggleButton>
           </ToggleButtonGroup>
-          <CloseIcon 
-            onClick={handleModalClose} 
-            sx={{float:'right', position:'relative', top:12, '&:hover': {cursor:'pointer'}}}  
-          >
-
-          </CloseIcon>
+          <CloseIcon
+            onClick={handleModalClose}
+            sx={{ float: 'right', position: 'relative', top: 12, '&:hover': { cursor: 'pointer' } }}
+          ></CloseIcon>
           {showLogin && <LoginForm></LoginForm>}
           {showSignup && <SignupForm></SignupForm>}
         </Box>
