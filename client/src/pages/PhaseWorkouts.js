@@ -33,7 +33,7 @@ const PhaseWorkouts = () => {
         });
         let workData = d2?.workouts || {};
         if (l2) { return (<CircularProgress />) };
-        if (e2) { return 'ERROR...' };
+        if (e2) { return `ERROR... ${e2.message}` };
         return (
             <Card sx={{ maxWidth: 345, m: 2 }}>
                 <CardContent>
@@ -49,7 +49,7 @@ const PhaseWorkouts = () => {
                         Total Number of Exercises: {workData.exercisesCount}
                     </Typography>
                     <CardActions>
-                        <Button variant="contained" href={`/phases/${workId}`}>Open Workout</Button>
+                        <Button variant="contained" href={`/exercise/${workId}`}>Open Workout</Button>
                     </CardActions>
                 </CardContent>
             </Card>

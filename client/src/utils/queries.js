@@ -58,6 +58,7 @@ export const QUERY_WORKOUTS = gql`
       position
       secBtwnExs
       exercisesCount
+      totalSetsCount
       exercises {
         _id
       }
@@ -68,7 +69,7 @@ export const QUERY_WORKOUTS = gql`
 //  exercise(id: ID!): Exercise
 export const QUERY_EXERCISES = gql`
   query getExercises($exerId: ID!) {
-    exercises(id: $exerId) {
+    exercise(id: $exerId) {
       _id
       name
       description
@@ -79,6 +80,7 @@ export const QUERY_EXERCISES = gql`
       goalUnits
       numSets
       secBtwnSets
+      exDatasCount
       exDatas {
         _id
         setNum
