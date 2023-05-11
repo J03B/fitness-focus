@@ -21,7 +21,7 @@ const AddPhase = () => {
                         Add Phase
                     </Typography>
                 </Container>
-                <PhaseForm></PhaseForm>
+                <PhaseForm programId={programId}></PhaseForm>
             </Container>
         </>
     )
