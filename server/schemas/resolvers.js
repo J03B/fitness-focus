@@ -9,7 +9,7 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id }).select(
           '-__v -password'
-        );
+        ).populate('programs');
         return userData;
       }
       throw new AuthenticationError('Not logged in.');
@@ -71,8 +71,13 @@ const resolvers = {
     },
     // addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!): Phase
     addPhase: async (parent, args) => {
-      const data = new Phase(args);
-      return data;
+      console.log('Parent');
+      console.log(parent);
+      console.log('args');
+      console.log(args);
+      // const newPhase = await Phase.create(args);
+      // await Phase.findByIdAndUpdate(context.user._id, { $push: { phases: newPhase.id } });
+      return '';
     },
     // addProgram(name: String!, description: String, image: String): Program
     addProgram: async (parent, args, context) => {

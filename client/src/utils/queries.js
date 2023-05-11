@@ -10,6 +10,7 @@ export const QUERY_ME = gql`
     programsCount
     programs {
       _id
+      name
     }
   }
 }

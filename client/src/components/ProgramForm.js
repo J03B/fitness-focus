@@ -76,7 +76,6 @@ export default function ProgramForm() {
                             name='description'
                             onChange={handleInputChange}
                             value={progFormData.description}
-                            required
                             style={{ width: "100%" }}
                         />
                     </div>
