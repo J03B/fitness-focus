@@ -120,17 +120,20 @@ export const ADD_PHASE = gql`
     $description: String
     $position: Int!
     $numberOfWeeks: Int!
+    $programId: ID!
   ) {
     addPhase(
       name: $name
       description: $description
       position: $position
       numberOfWeeks: $numberOfWeeks
+      programId: $programId
     ) {
         name
         description
         position
         numberOfWeeks
+        programId
     }
   }
 `;

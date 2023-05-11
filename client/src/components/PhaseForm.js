@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { 
-    TextField, 
-    Alert, 
-    Button, 
+import {
+    TextField,
+    Alert,
+    Button,
     FormControl,
     InputLabel,
     Select,
     MenuItem,
-    Skeleton
 } from '@mui/material';
 
 // Custom Components
@@ -19,27 +18,39 @@ import { ADD_PHASE } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth';
 
-export default function PhaseForm() {
-    const [phaseFormData, setPhaseFormData] = useState({ name: '', description: '', position: '', numberOfWeeks: '', programId: '' });
+export default function PhaseForm(props) {
+    // TODO: Verify that program belongs to user
+    const defaultProgram = props.programId !== undefined ? props.programId: ''
+    const [phaseFormData, setPhaseFormData] = useState({ name: '', description: '', position: '', numberOfWeeks: '', programId: defaultProgram });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [addPhase, { error }] = useMutation(ADD_PHASE);
 
+    if (error) {
+        console.log('ADD_PHASE error:');
+        console.error(error);
+    }
+
     // Handles the input changes by updating it in our State variable
     const handleInputChange = (event) => {
-        console.log(event.target);
         const { name, value } = event.target;
-        console.log('phaseFormData');
-        console.log(phaseFormData);
         setPhaseFormData({ ...phaseFormData, [name]: value });
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        // Convert strings to ints
+        console.log('Converting strings to ints');
+        phaseFormData.position = parseInt(phaseFormData.position);
+        phaseFormData.numberOfWeeks = parseInt(phaseFormData.numberOfWeeks);
+
+
         try {
             const { data } = await addPhase({
                 variables: { ...phaseFormData },
             });
+            console.log('Successfully submitted the data');
             console.log(data);
             window.location.assign('/programs');
         } catch (err) {
@@ -49,10 +60,9 @@ export default function PhaseForm() {
         setPhaseFormData({ name: '', description: '', position: '', numberOfWeeks: '', programId: '' });
     };
 
-    // TODO: Get list of all programs for user
+    // Get list of all programs for user
     const { loading, data } = useQuery(QUERY_ME);
     let userData = data?.me.programs || {};
-    console.log(userData);
 
     return (
         <>
@@ -61,7 +71,7 @@ export default function PhaseForm() {
                     {showAlert && <Alert variant='standard' severity='error' color='error' className='mb-3'>
                         Something went wrong with accessing the server!
                     </Alert>}
-                    
+
                     <FormControl required fullWidth className='my-3'>
                         <InputLabel id="program-select-label">Program</InputLabel>
                         <Select
@@ -75,7 +85,7 @@ export default function PhaseForm() {
                             {loading
                                 ?<MenuItem>Loading Items</MenuItem>
                                 :userData.map((data) => (
-                                    <MenuItem value={data._id}>{data.name}</MenuItem>
+                                    <MenuItem value={data._id} key={data._id}>{data.name}</MenuItem>
                                 )
                             )}
                         </Select>

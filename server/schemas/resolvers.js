@@ -69,15 +69,11 @@ const resolvers = {
       const data = new Workout(args);
       return data;
     },
-    // addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!): Phase
-    addPhase: async (parent, args) => {
-      console.log('Parent');
-      console.log(parent);
-      console.log('args');
-      console.log(args);
-      // const newPhase = await Phase.create(args);
-      // await Phase.findByIdAndUpdate(context.user._id, { $push: { phases: newPhase.id } });
-      return '';
+    // addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!, programId: ID!): Phase
+    addPhase: async (parent, args, context) => {
+      const newPhase = await Phase.create(args);
+      await Program.findByIdAndUpdate(args.programId, { $push: { phases: newPhase.id } });
+      return newPhase;
     },
     // addProgram(name: String!, description: String, image: String): Program
     addProgram: async (parent, args, context) => {
