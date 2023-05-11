@@ -4,9 +4,19 @@ import Grid from '@mui/material/Grid';
 import { Button, TextField } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-
-const ExDataForm = ({ prevComment, handleFormSubmit, handlePrevButton }) => {
+const ExDataForm = (
+    {
+        handleNextButton,
+        handlePrevButton,
+        showFinishButton,
+        handleFinishButton,
+        prevComment,
+        goalReps,
+        goalWeight,
+        goalUnits
+    }) => {
     const [userFormData, setUserFormData] = useState({ weight: '', reps: '', comment: '' });
     const [validated] = useState(false);
 
@@ -20,7 +30,7 @@ const ExDataForm = ({ prevComment, handleFormSubmit, handlePrevButton }) => {
             <form
                 noValidate
                 validated={validated.toString()}
-                onSubmit={handleFormSubmit}
+                onSubmit={handleFinishButton}
             >
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={6} >
@@ -30,6 +40,7 @@ const ExDataForm = ({ prevComment, handleFormSubmit, handlePrevButton }) => {
                             variant="outlined"
                             onChange={handleInputChange}
                             value={userFormData.reps}
+                            helperText={`Goal: ${goalReps}`}
                             required
                             style={{ width: "100%" }}
                         />
@@ -42,6 +53,7 @@ const ExDataForm = ({ prevComment, handleFormSubmit, handlePrevButton }) => {
                             variant="outlined"
                             onChange={handleInputChange}
                             value={userFormData.weight}
+                            helperText={`Goal: ${goalWeight} ${goalUnits}`}
                             required
                             style={{ width: "100%" }}
                         />
@@ -54,8 +66,7 @@ const ExDataForm = ({ prevComment, handleFormSubmit, handlePrevButton }) => {
                             variant="outlined"
                             onChange={handleInputChange}
                             value={userFormData.comment}
-                            helperText={prevComment}
-                            required
+                            helperText={prevComment()}
                             style={{ width: "100%" }}
                         />
                     </Grid>
@@ -72,14 +83,27 @@ const ExDataForm = ({ prevComment, handleFormSubmit, handlePrevButton }) => {
                     </Grid>
 
                     <Grid item xs={6} >
-                        <Button
-                            variant="contained"
-                            disabled={!(userFormData.weight && userFormData.reps)}
-                            type='submit'
-                        >
-                            Next
-                            <ArrowForwardIosIcon />
-                        </Button>
+                        {/* Determine if we should show the Finish button or the Next Button */}
+                        {showFinishButton ?
+                            <Button
+                                variant="contained"
+                                disabled={!(userFormData.weight && userFormData.reps)}
+                                type='submit'
+                            >
+                                Finish
+                                <CheckCircleOutlineIcon sx={{ ml: 1 }}/>
+                            </Button>
+                            :
+                            <Button
+                                variant="contained"
+                                disabled={!(userFormData.weight && userFormData.reps)}
+                                type='next'
+                                onClick={handleNextButton}
+                            >
+                                Next
+                                <ArrowForwardIosIcon />
+                            </Button>}
+
 
                     </Grid>
 

@@ -42,11 +42,11 @@ workoutSchema.virtual('exercisesCount').get(function () {
   return this.exercises.length;
 });
 
-workoutSchema.virtual('totalSetsCount').get(function () {
+workoutSchema.virtual('totalSetsCount').get(async function () {
   let totSets = 0;
   for (let i = 0; i < this.exercises.length - 1; i++) {
     const exId = this.exercises[i];
-    const exModel = Exercise.findOne({ _id: exId});
+    const exModel = await Exercise.findOne({ _id: exId});
     totSets += exModel.numSets;
   }
   return totSets || 0;

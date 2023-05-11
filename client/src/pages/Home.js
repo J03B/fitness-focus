@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Button, Container, Typography } from '@mui/material';
+import PromptLogin from '../components/PromptLogin'
 import Auth from '../utils/auth';
 
 const Home = () => {
@@ -8,7 +9,7 @@ const Home = () => {
     <>
       <Container maxWidth="md" sx={{ my: 4 }}>
         <Typography variant="h2">Welcome to Fitness Focus</Typography>
-        <Typography variant="h3" sx={{ my: 4 }}>
+        <Typography variant="h4" sx={{ my: 4 }}>
           Get started by going to your My Programs Dashboard or simply start one of you workouts with the quick links
           below.
         </Typography>
@@ -22,9 +23,7 @@ const Home = () => {
         </Container>
       ) : (
         <Container maxWidth="md">
-          <Typography variant="h2" color={'primary'}>
-            Log in to view your programs!{' '}
-          </Typography>
+          <PromptLogin prompt={'to view Programs'} />
         </Container>
       )}
     </>
