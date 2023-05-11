@@ -6,22 +6,20 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#002884',
-  ...theme.typography.body1,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: '#fff',
+    backgroundColor: '#e234f',
+    ...theme.typography.body1,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: '#fff',
 }));
 
-const PromptLogin = ({prompt}) => {
+const PromptLogin = ({ prompt }) => {
     return (
         <Grid
             container
             direction="row"
             justifyContent="space-evenly"
             alignItems="center"
-
-            sx={{ margin: 4 }}
         >
             <Grid item >
                 <Typography variant="h2" gutterBottom sx={{ textAlign: 'center' }}>

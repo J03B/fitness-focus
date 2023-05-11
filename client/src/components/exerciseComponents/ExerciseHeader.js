@@ -12,7 +12,7 @@ const ExerciseHeader = ({ exName, exImage, exDescription }) => {
         <Typography variant="h5" sx={{ mb: 2 }}>
           {exName}
         </Typography>
-        <Avatar sx={{ width: '85%', height: '85%', maxWidth: 400, maxHeight: 400 }} src={`/images/${exImage}`} />
+        <Avatar sx={{ width: '100%', height: '100%', maxWidth: 450, maxHeight: 450 }} src={`/images/${exImage}`} />
         <Typography variant="subtitle1">{exDescription}</Typography>
       </Stack>
     </>
