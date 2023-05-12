@@ -27,7 +27,7 @@ const resolvers = {
     },
     // exercise(id: ID!): Exercise
     exercise: async (parent, args, context, info) => {
-      return Exercise.findOne({ _id: args.id });
+      return Exercise.findOne({ _id: args.id }).populate('exDatas');
     },
   },
 

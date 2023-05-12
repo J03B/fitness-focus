@@ -63,6 +63,7 @@ const typeDefs = gql`
     weight: Int
     units: String
     comment: String
+    createdAt: String
   }
 
   type Auth {
