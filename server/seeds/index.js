@@ -32,7 +32,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Weighted Chin-ups',
@@ -44,7 +44,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'One Arm Overhead Tricep Extensions',
@@ -56,7 +56,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Leaning Lateral Raises',
@@ -68,7 +68,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 90,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15], exdataImport[16]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id, exdata[16]._id]
         },
 
         // Wednesday 1
@@ -82,7 +82,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Romanian Deadlifts',
@@ -94,7 +94,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Single Leg Hip Thrusts',
@@ -106,7 +106,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'DB Leaning Shrugs',
@@ -118,7 +118,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id]
         },
 
         // Friday 1
@@ -132,7 +132,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Pinned Hammer Bicep Curls',
@@ -144,7 +144,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Bent Over Flys',
@@ -156,7 +156,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 90,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Hanging Leg Raises',
@@ -168,7 +168,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 90,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15], exdataImport[16]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id, exdata[16]._id]
         },
 
         // Moday 2
@@ -182,7 +182,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Weighted Pull-ups/Sternum-ups',
@@ -194,7 +194,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Triceps Cable Pushdowns',
@@ -206,7 +206,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Upright Rows',
@@ -218,7 +218,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 90,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15], exdataImport[16]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id, exdata[16]._id]
         },
 
         // Wednesday 2
@@ -232,7 +232,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Sumo Deadlifts',
@@ -244,7 +244,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Walking DB Lunges/Leg Curl Superset',
@@ -256,7 +256,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'One Arm Cable Shrugs',
@@ -268,7 +268,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 90,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id]
         },
 
         // Friday 2
@@ -282,7 +282,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Weighted Dips',
@@ -294,7 +294,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 3,
             secBtwnSets: 90,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Incline Curls',
@@ -306,7 +306,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 90,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Face Pulls/Hanging Knee Raises',
@@ -318,7 +318,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 90,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15], exdataImport[16]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id, exdata[16]._id]
         },
 
         // Moday 3
@@ -332,7 +332,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 6,
             secBtwnSets: 60,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Weighted chin-ups',
@@ -344,7 +344,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'One Arm Cable Pushdowns',
@@ -356,7 +356,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Incline Lateral Raise',
@@ -368,7 +368,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 30,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15], exdataImport[16]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id, exdata[16]._id]
         },
 
         // Wednesday 3
@@ -382,7 +382,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Bulgarian Split Squats',
@@ -394,7 +394,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Romanian Deadlifts',
@@ -406,7 +406,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Leg Extension/Curl/Shrug Ultra Set',
@@ -418,7 +418,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id]
         },
 
         // Friday 3
@@ -432,7 +432,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[0], exdataImport[1], exdataImport[2], exdataImport[3]]
+            exDatas: [exdata[0]._id, exdata[1]._id, exdata[2]._id, exdata[3]._id]
         },
         {
             name: 'Concentration/Pinwheel Curls',
@@ -444,7 +444,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 8,
             secBtwnSets: 30,
-            exdata: [exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7], exdataImport[4], exdataImport[5], exdataImport[6], exdataImport[7]]
+            exDatas: [exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id, exdata[4]._id, exdata[5]._id, exdata[6]._id, exdata[7]._id]
         },
         {
             name: 'Incline Flys Cross Overs',
@@ -456,7 +456,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 4,
             secBtwnSets: 60,
-            exdata: [exdataImport[8], exdataImport[9], exdataImport[10], exdataImport[11]]
+            exDatas: [exdata[8]._id, exdata[9]._id, exdata[10]._id, exdata[11]._id]
         },
         {
             name: 'Rear Delt Flys',
@@ -468,7 +468,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 5,
             secBtwnSets: 30,
-            exdata: [exdataImport[12], exdataImport[13], exdataImport[14], exdataImport[15], exdataImport[16]]
+            exDatas: [exdata[12]._id, exdata[13]._id, exdata[14]._id, exdata[15]._id, exdata[16]._id]
         },
 
         // 7 workouts for Program 2
@@ -483,7 +483,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Wide Front Pull Ups',
@@ -495,7 +495,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Military Push Ups',
@@ -507,7 +507,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Reverse Grip Chin Ups',
@@ -519,7 +519,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Wide Fly Push Ups',
@@ -531,7 +531,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Close Grip Overhand Pull Ups',
@@ -543,7 +543,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Decline Push Ups',
@@ -555,7 +555,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Leaning DB Rows',
@@ -567,7 +567,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Diamond Push Ups',
@@ -579,7 +579,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Lawnmower',
@@ -591,7 +591,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Dive-Bomber Push Ups',
@@ -603,7 +603,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         {
             name: 'Back Flys',
@@ -615,7 +615,7 @@ db.once('open', async () => {
             goalUnits: 'lbs',
             numSets: 1,
             secBtwnSets: 15,
-            exdata: []
+            exDatas: []
         },
         //'Jump Training'
         //'Shoulders and Arms'

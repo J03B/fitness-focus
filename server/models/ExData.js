@@ -37,9 +37,8 @@ const exDataSchema = new Schema(
       type: String,
     },
     createdAt: {
-      type: Date,
-      default: Date.now,
-      get: formatDateTime,
+      type: String,
+      default: () => Date.now().toString(),
     },
   },
   {

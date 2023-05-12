@@ -41,7 +41,12 @@ const exerciseSchema = new Schema(
       type: Number,
       required: true,
     },
-    exDatas: [ExData.schema],
+    exDatas: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'ExData'
+      }
+    ]
   },
   // set this to use virtual below
   {

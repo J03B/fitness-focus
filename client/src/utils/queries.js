@@ -89,6 +89,7 @@ export const QUERY_EXERCISES = gql`
         weight
         units
         comment
+        createdAt
       }
     }
   }
