@@ -7,9 +7,7 @@ const resolvers = {
     // me Query to GET all logged in user's data
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select(
-          '-__v -password'
-        ).populate('programs');
+        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate('programs');
         return userData;
       }
       throw new AuthenticationError('Not logged in.');
@@ -17,19 +15,19 @@ const resolvers = {
 
     // programs(id: ID!): Program
     programs: async (parent, args, context, info) => {
-      return Program.findOne({ _id: args.id});
+      return Program.findOne({ _id: args.id });
     },
     // phases(id: ID!): Phase
     phases: async (parent, args, context, info) => {
-      return Phase.findOne({ _id: args.id});
+      return Phase.findOne({ _id: args.id });
     },
     // workouts(id: ID!): Workout
     workouts: async (parent, args, context, info) => {
-      return Workout.findOne({ _id: args.id});
+      return Workout.findOne({ _id: args.id });
     },
     // exercise(id: ID!): Exercise
     exercise: async (parent, args, context, info) => {
-      return Exercise.findOne({ _id: args.id});
+      return Exercise.findOne({ _id: args.id });
     },
   },
 
@@ -118,7 +116,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-  }
+  },
 };
 
 module.exports = resolvers;
