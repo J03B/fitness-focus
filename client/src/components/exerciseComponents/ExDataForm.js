@@ -15,7 +15,8 @@ const ExDataForm = (
         prevComment,
         goalReps,
         goalWeight,
-        goalUnits
+        goalUnits,
+        hidePrevButton
     }) => {
     const [userFormData, setUserFormData] = useState({ weight: '', reps: '', comment: '' });
     const [validated] = useState(false);
@@ -74,6 +75,7 @@ const ExDataForm = (
                     <Grid item xs={6} >
                         <Button
                             variant="contained"
+                            disabled={hidePrevButton}
                             onClick={handlePrevButton}
                         >
                             <ArrowBackIosIcon />

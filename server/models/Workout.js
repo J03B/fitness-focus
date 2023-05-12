@@ -44,7 +44,7 @@ workoutSchema.virtual('exercisesCount').get(function () {
 
 workoutSchema.virtual('totalSetsCount').get(async function () {
   let totSets = 0;
-  for (let i = 0; i < this.exercises.length - 1; i++) {
+  for (let i = 0; i < this.exercises.length; i++) {
     const exId = this.exercises[i];
     const exModel = await Exercise.findOne({ _id: exId});
     totSets += exModel.numSets;

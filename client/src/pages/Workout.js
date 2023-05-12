@@ -4,17 +4,16 @@ import { useParams } from 'react-router-dom';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import TimelineIcon from '@mui/icons-material/Timeline';
 import Stack from '@mui/material/Stack';
 
 import NoMatch from './NoMatch';
 import ExerciseHeader from '../components/exerciseComponents/ExerciseHeader';
 import ExDataForm from '../components/exerciseComponents/ExDataForm';
 import RestingTimer from '../components/exerciseComponents/RestingTimer';
+import ViewPrevious from '../components/exerciseComponents/ViewPrevious';
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_WORKOUTS, QUERY_EXERCISES } from '../utils/queries';
-import { Container } from '@mui/material';
 
 const StartWorkout = () => {
     let { workoutId } = useParams();
@@ -34,36 +33,51 @@ const StartWorkout = () => {
     let workData = data?.workouts || {};
     console.log(workData);
 
-    // handler function for when the user clicks the previous button
-    const viewPreviousData = () => { };
-
     // handler function for when the user clicks the next button
     const handleNextButton = ({ setsInExer, goalReps, goalWeight, reps, weight }) => {
         // Move on to the next exercise (first check set num, then adjust exercise)
         if (currentSetNum < setsInExer) {
-            setCurrentSetNum(currentSetNum + 1);
+            setCurrentSetNum(currentSetNum + 0.5);
         } else {
             setCurrentExercise(currentExercise + 1);
-            setCurrentSetNum(1);
+            setCurrentSetNum(0.5);
         }
         // Calculate the percent done for the progress bar
-        setProgressPercent(Math.min(progressPercent + (100 / workData.totalSetsCount) - 1, 100));
-        if (progressPercent > 99.9) {
-            setFinishButton(true);
-        }
-        setLastRepAndWt([goalReps, goalWeight, reps, weight])
+        setProgressPercent(Math.min(progressPercent + (50 / workData.totalSetsCount), 100));        
+        setLastRepAndWt([goalReps, goalWeight, reps, weight]);
         setOnRestBtwnExs(true);
     }
 
-    const handlePreviousButton = () => { 
-        setCurrentSetNum(currentSetNum - 1);
+    const handlePreviousButton = ( { setsInExer } ) => {
+        if (currentSetNum == .5) {
+            setCurrentExercise(currentExercise - 1);
+            setCurrentSetNum(setsInExer + .5);
+        } else {
+            setCurrentSetNum(currentSetNum - .5);
+        }
+        setProgressPercent(Math.min(progressPercent - (50 / workData.totalSetsCount), 100));
         setOnRestBtwnExs(true);
     };
 
-    const handlePreviousButtonOnRest = () => { 
+    const handlePreviousButtonOnRest = ( { setsInExer } ) => { 
+        if (currentSetNum == .5) {
+            setCurrentExercise(currentExercise - 1);
+            setCurrentSetNum(setsInExer + .5);
+        } else {
+            setCurrentSetNum(currentSetNum - .5);
+        }        
+        setProgressPercent(Math.min(progressPercent - (50 / workData.totalSetsCount), 100));
         setOnRestBtwnExs(false);
     };
-    const handleNextButtonOnRest = () => { 
+    const handleNextButtonOnRest = ( { setsInExer } ) => { 
+        if (currentSetNum < setsInExer) {
+            setCurrentSetNum(currentSetNum + 0.5);
+        } else {
+            setCurrentExercise(currentExercise + 1);
+            setCurrentSetNum(0.5);
+        }
+        // Calculate the percent done for the progress bar
+        setProgressPercent(Math.min(progressPercent + (50 / workData.totalSetsCount), 100));
         setOnRestBtwnExs(false);
     };
 
@@ -72,6 +86,7 @@ const StartWorkout = () => {
         return exerData.exDatas[lastIndex]?.comment || 'No previous comment';
     }
 
+    // TODO - POSSIBLY JUST SUBMIT THE LAST DATA AND GO BACK TO THE HOME PAGE
     const handleFormSubmit = () => {
         // If last workout was just finished, go to the finish workout page
         if (progressPercent >= 100) {
@@ -79,8 +94,18 @@ const StartWorkout = () => {
             return;
         }
     }
-
+    
     const QueryContainer = ({ exId }) => {
+        useEffect(() => {
+            if (progressPercent >= (100 - (100 / workData.totalSetsCount))) {
+                setFinishButton(true);
+            }
+        });
+        const prevSetArray=[];
+        const prevRepsArray=[];
+        const prevWeightArray=[];
+        const prevCommentArray=[];
+        const prevDateArray=[];
         const { loading: l2, error: e2, data: d2 } = useQuery(QUERY_EXERCISES, {
             variables: { exerId: exId },
         });
@@ -88,6 +113,23 @@ const StartWorkout = () => {
         if (l2) { return (<CircularProgress />) };
         if (e2) { return (`Error... ${e2.message} |`) };
         console.log(exerData);
+        if (exerData.exDatasCount) {
+            for (let i = 0; i < exerData.exDatasCount; i++) {
+                const exData = exerData.exDatas[i];
+                prevSetArray.push(exData.setNum);
+                prevRepsArray.push(exData.reps);
+                prevWeightArray.push(`${exData.weight} + ${exData.units}`);
+                prevCommentArray.push(exData.comment);
+                prevDateArray.push(exData.createdAt.toLocaleDateString("en-US"));
+            }
+        } // TODO - REMOVE THIS BEFORE GO-LIVE - FOR TESTING ONLY
+        else {
+            prevSetArray.push(1,2,3);
+            prevRepsArray.push(18,6,10);
+            prevWeightArray.push("100 lbs","160 lbs","145 lbs");
+            prevCommentArray.push("Go heavier","Go lighter","Just right");
+            prevDateArray.push("5/10/23","5/10/23","5/10/23");
+        }
         return (
             <>
                 {currentExercise != exerData.position ?
@@ -96,8 +138,8 @@ const StartWorkout = () => {
                     <Box>
                         {onRestBtwnExs ?
                             <RestingTimer
-                                handlePrevious={() => handlePreviousButtonOnRest()}
-                                handleNext={() => handleNextButtonOnRest()}
+                                handlePrevious={() => handlePreviousButtonOnRest({ setsInExer: exerData.numSets })}
+                                handleNext={() => handleNextButtonOnRest({ setsInExer: exerData.numSets })}
                                 restTime={exerData.secBtwnSets}
                                 goalReps={lastRepAndWt[0]}
                                 goalWeight={lastRepAndWt[1]}
@@ -113,19 +155,26 @@ const StartWorkout = () => {
                                 />
 
                                 {/* Icon to bring forward the past data for the same workout */}
-                                <TimelineIcon onClick={() => viewPreviousData(exerData)} />
+                                <ViewPrevious 
+                                    prevSetArray={prevSetArray}
+                                    prevRepsArray={prevRepsArray}
+                                    prevWeightArray={prevWeightArray}
+                                    prevCommentArray={prevCommentArray}
+                                    prevDateArray={prevDateArray}
+                                />
 
                                 {/* Form to enter the current exercise's ExData and move between exercises*/}
 
                                 <ExDataForm
                                     handleNextButton={() => handleNextButton({ setsInExer: exerData.numSets, goalReps: exerData.goalReps, goalWeight: exerData.goalWeight, reps: exerData.reps, weight: exerData.weight })}
-                                    handlePrevButton={() => handlePreviousButton()}
+                                    handlePrevButton={() => handlePreviousButton({ setsInExer: exerData.numSets })}
                                     showFinishButton={finishButton}
                                     handleFinishButton={handleFormSubmit}
                                     prevComment={() => getLastComment(exerData)}
                                     goalReps={exerData.goalReps}
                                     goalWeight={exerData.goalWeight}
                                     goalUnits={exerData.goalUnits}
+                                    hidePrevButton={((currentExercise == 1) && (currentSetNum < 2))}
                                 />
                             </Box>
                         }
