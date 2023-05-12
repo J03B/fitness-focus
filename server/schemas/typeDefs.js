@@ -82,7 +82,17 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addExData(setNum: Int!, reps: Int!, weight: Int!, units: String!, comment: String): ExData
-    addExercise(name: String!, description: String, image: String, position: Int!, goalReps: Int!, goalWeight: Int!, goalUnits: String!, numSets: Int!, secBtwnSets: Int!): Exercise
+    addExercise(
+      name: String!
+      description: String
+      image: String
+      position: Int!
+      goalReps: Int!
+      goalWeight: Int!
+      goalUnits: String!
+      numSets: Int!
+      secBtwnSets: Int!
+    ): Exercise
     addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!): Workout
     addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!, programId: ID!): Phase
     addProgram(name: String!, description: String, image: String): Program
