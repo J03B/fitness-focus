@@ -7,6 +7,7 @@ import {
     InputLabel,
     Select,
     MenuItem,
+    Skeleton
 } from '@mui/material';
 
 // Custom Components
@@ -14,55 +15,76 @@ import PromptLogin from './PromptLogin';
 
 // Import Mutations and Auth files
 import { useMutation, useQuery } from '@apollo/client';
-import { ADD_PHASE } from '../utils/mutations';
+import { ADD_WORKOUT } from '../utils/mutations';
 import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth';
 
-export default function PhaseForm(props) {
-    // TODO: Verify that program belongs to user
-    const defaultProgram = props.programId !== undefined ? props.programId: ''
-    const [phaseFormData, setPhaseFormData] = useState({ name: '', description: '', position: '', numberOfWeeks: '', programId: defaultProgram });
+export default function WorkoutForm(props) {
+    // TODO: Verify that phase belongs to user
+    const defaultPhase = props.phaseId !== undefined ? props.phaseId: ''
+    const [workoutFormData, setWorkoutFormData] = useState({ name: '', description: '', position: '', secBtwnExs: '', phaseId: defaultPhase });
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [addPhase, { error }] = useMutation(ADD_PHASE);
+    const [addWorkout, { error }] = useMutation(ADD_WORKOUT);
 
     if (error) {
-        console.log('ADD_PHASE error:');
+        console.log('ADD_WORKOUT error:');
         console.error(error);
     }
 
     // Handles the input changes by updating it in our State variable
     const handleInputChange = (event) => {
         const { name, value } = event.target;
-        setPhaseFormData({ ...phaseFormData, [name]: value });
+        setWorkoutFormData({ ...workoutFormData, [name]: value });
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        console.log('Attempting to submit form!');
+        console.log('workoutFormData');
+        console.log(workoutFormData);
         // Convert strings to ints
         console.log('Converting strings to ints');
-        phaseFormData.position = parseInt(phaseFormData.position);
-        phaseFormData.numberOfWeeks = parseInt(phaseFormData.numberOfWeeks);
+        workoutFormData.position = parseInt(workoutFormData.position);
+        workoutFormData.secBtwnExs = parseInt(workoutFormData.secBtwnExs);
 
 
         try {
-            const { data } = await addPhase({
-                variables: { ...phaseFormData },
+            const { data } = await addWorkout({
+                variables: { ...workoutFormData },
             });
             console.log('Successfully submitted the data');
             console.log(data);
-            window.location.assign(`/phases/${phaseFormData.programId}`);
+            // TODO: Go to phase page instead of going inside of phase
+            window.location.assign(`/workouts/${workoutFormData.phaseId}`);
         } catch (err) {
             console.error(err);
             setShowAlert(true);
         }
-        setPhaseFormData({ name: '', description: '', position: '', numberOfWeeks: '', programId: '' });
+        setWorkoutFormData({ name: '', description: '', position: '', numberOfWeeks: '', phaseId: '' });
     };
 
-    // Get list of all programs for user
+    // Get list of all phases for user
     const { loading, data } = useQuery(QUERY_ME);
-    let userData = data?.me.programs || {};
+    let programData = data?.me.programs || {};
+    if (loading) {
+        return <Skeleton></Skeleton>
+    }
+    console.log('programData');
+    console.log(programData);
+    let phaseData = [];
+    programData.map((program) => {
+        program.phases.map((phase) => {
+            phaseData.push({
+                'name': phase['name'] + ' (' + program['name'] + ')',
+                '_id': phase._id
+            });
+        })
+        
+    });
+    console.log('phaseData');
+    console.log(phaseData);
 
     return (
         <>
@@ -73,18 +95,18 @@ export default function PhaseForm(props) {
                     </Alert>}
 
                     <FormControl required fullWidth className='my-3'>
-                        <InputLabel id="program-select-label">Program</InputLabel>
+                        <InputLabel id="phase-select-label">Phase</InputLabel>
                         <Select
-                            labelId="program-select-label"
-                            id="program-select"
-                            name='programId'
-                            value={phaseFormData.programId}
+                            labelId="phase-select-label"
+                            id="phase-select"
+                            name='phaseId'
+                            value={workoutFormData.phaseId}
                             label="Program"
                             onChange={handleInputChange}
                         >
                             {loading
                                 ?<MenuItem>Loading Items</MenuItem>
-                                :userData.map((data) => (
+                                :phaseData.map((data) => (
                                     <MenuItem value={data._id} key={data._id}>{data.name}</MenuItem>
                                 )
                             )}
@@ -93,31 +115,31 @@ export default function PhaseForm(props) {
 
                     <div className='mb-3'>
                         <TextField
-                            label='Phase Name'
+                            label='Workout Name'
                             name='name'
                             onChange={handleInputChange}
                             required
-                            value={phaseFormData.name}
+                            value={workoutFormData.name}
                             style={{ width: "100%" }}
                         />
                     </div>
 
                     <div className='mb-3'>
                         <TextField
-                            label='Phase Description'
+                            label='Workout Description'
                             name='description'
                             onChange={handleInputChange}
-                            value={phaseFormData.description}
+                            value={workoutFormData.description}
                             style={{ width: "100%" }}
                         />
                     </div>
 
                     <div className='mb-3'>
                         <TextField
-                            label='Phase Position'
+                            label='Workout Position'
                             name='position'
                             onChange={handleInputChange}
-                            value={phaseFormData.position}
+                            value={workoutFormData.position}
                             type='number'
                             required
                             style={{ width: "100%" }}
@@ -126,10 +148,10 @@ export default function PhaseForm(props) {
 
                     <div className='mb-3'>
                         <TextField
-                            label='Number of Weeks'
-                            name='numberOfWeeks'
+                            label='Seconds Between Exercises'
+                            name='secBtwnExs'
                             onChange={handleInputChange}
-                            value={phaseFormData.numberOfWeeks}
+                            value={workoutFormData.secBtwnExs}
                             type='number'
                             required
                             style={{ width: "100%" }}
@@ -137,7 +159,7 @@ export default function PhaseForm(props) {
                     </div>
 
                     <Button
-                        disabled={!(phaseFormData.name)}
+                        disabled={!(workoutFormData.name)}
                         type='submit'
                         variant='contained'
                         onSubmit={handleFormSubmit}>

@@ -99,17 +99,20 @@ export const ADD_WORKOUT = gql`
     $description: String
     $position: Int!
     $secBtwnExs: Int!
+    $phaseId: ID!
   ) {
     addWorkout(
       name: $name
       description: $description
       position: $position
       secBtwnExs: $secBtwnExs
+      phaseId: $phaseId
     ) {
         name
         description
         position
         secBtwnExs
+        phaseId
     }
   }
 `;

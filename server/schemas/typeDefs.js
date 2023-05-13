@@ -39,6 +39,7 @@ const typeDefs = gql`
     exercisesCount: Int
     totalSetsCount: Int
     exercises: [Exercise]
+    phaseId: ID
   }
 
   type Exercise {
@@ -94,7 +95,7 @@ const typeDefs = gql`
       numSets: Int!
       secBtwnSets: Int!
     ): Exercise
-    addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!): Workout
+    addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!, phaseId: ID!): Workout
     addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!, programId: ID!): Phase
     addProgram(name: String!, description: String, image: String): Program
     updateGoals(_id: ID!, goalReps: Int!, goalWeight: Int!, goalUnits: String): Exercise
