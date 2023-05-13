@@ -7,7 +7,22 @@ const resolvers = {
     // me Query to GET all logged in user's data
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate('programs');
+        const userData = await User
+        .findOne({ _id: context.user._id })
+        .select('-__v -password')
+        .populate({
+          path: 'programs',
+          model: 'Program',
+          populate: {
+            path: 'phases',
+            model: 'Phase',
+            populate: {
+              path: 'workouts',
+              model: 'Workout',
+            }
+          }
+        });
+        
         return userData;
       }
       throw new AuthenticationError('Not logged in.');
@@ -62,10 +77,11 @@ const resolvers = {
       const data = new Exercise(args);
       return data;
     },
-    // addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!): Workout
+    // addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!, phaseId: ID!): Workout
     addWorkout: async (parent, args) => {
-      const data = new Workout(args);
-      return data;
+      const newWorkout = await Workout.create(args);
+      await Phase.findByIdAndUpdate(args.phaseId, { $push: { workouts: newWorkout.id } });
+      return newWorkout;
     },
     // addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!, programId: ID!): Phase
     addPhase: async (parent, args, context) => {

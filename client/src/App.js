@@ -21,6 +21,7 @@ import ProgramPhases from './pages/ProgramPhases';
 import PhaseWorkouts from './pages/PhaseWorkouts';
 import AddProgram from './pages/AddProgram';
 import AddPhase from './pages/AddPhase';
+import AddWorkout from './pages/AddWorkout';
 import NoMatch from './pages/NoMatch';
 
 // Set dark theme as the default
@@ -85,6 +86,10 @@ function App() {
               <Route
                 path="/add-phase/:programId?"
                 element={<AddPhase />}
+              />
+              <Route
+                path="/add-workout/:phaseId?"
+                element={<AddWorkout />}
               />
               <Route
                 path="*"

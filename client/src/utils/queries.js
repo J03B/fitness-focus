@@ -11,6 +11,14 @@ export const QUERY_ME = gql`
     programs {
       _id
       name
+      phases {
+        _id
+        name
+        workouts {
+          _id
+          name
+        }
+      }
     }
   }
 }
