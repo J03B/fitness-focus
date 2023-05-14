@@ -21,9 +21,11 @@ const PhaseWorkouts = () => {
   let { phaseId } = useParams();
   
   // Modal handling
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [openId, setOpenId] = useState('');
+  const handleOpen = (workId) => {
+    setOpenId(workId);
+  }
+  const handleClose = () => setOpenId('');
 
   const { loading, error, data } = useQuery(QUERY_PHASES, {
     variables: { phaseId: phaseId },
@@ -43,7 +45,7 @@ const PhaseWorkouts = () => {
     } = useQuery(QUERY_WORKOUTS, {
       variables: { workId: workId },
     });
-    let workData = d2?.workouts || {};
+    const workData = d2?.workouts || {};
     if (l2) {
       return <CircularProgress />;
     }
@@ -63,7 +65,7 @@ const PhaseWorkouts = () => {
       for (let i = 0; i < workData.exercisesCount; i++) {
         const exercise = workData.exercises[i];
         rows.push({
-          id: i + 1,
+          id: exercise._id + i,
           name: exercise.name,
           set: exercise.numSets,
           goals: `${exercise.goalReps} x ${exercise.goalWeight} ${exercise.goalUnits}`
@@ -102,16 +104,16 @@ const PhaseWorkouts = () => {
             <Button variant="contained" href={`/exercise/${workId}`}>
               Start Workout
             </Button>
-            <Button variant="outlined" onClick={handleOpen}>
+            <Button variant="outlined" onClick={() => handleOpen(workData._id)}>
               Preview
             </Button>
           </CardActions>
         </CardContent>
         <Modal
-          open={open}
+          open={openId == workData._id}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+          aria-labelledby={`modal-title-${workData.name}`}
+          aria-describedby={`modal-${workData.description}`}
         >
           <Box sx={style}>
             <DataGrid
