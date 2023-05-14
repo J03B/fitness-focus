@@ -13,10 +13,8 @@ const ExDataForm = (
         showFinishButton,
         handleFinishButton,
         prevComment,
-        goalReps,
-        goalWeight,
-        goalUnits,
-        hidePrevButton
+        hidePrevButton,
+        performanceData
     }) => {
     const [userFormData, setUserFormData] = useState({ weight: '', reps: '', comment: '' });
     const [validated] = useState(false);
@@ -25,6 +23,8 @@ const ExDataForm = (
         const { name, value } = event.target;
         setUserFormData({ ...userFormData, [name]: value });
     };
+
+    const { _id, numSets, goalReps, goalWeight, goalUnits } = performanceData;
 
     return (
         <>
@@ -38,6 +38,7 @@ const ExDataForm = (
                         <TextField
                             name='reps'
                             label="Reps"
+                            type="number"
                             variant="outlined"
                             onChange={handleInputChange}
                             value={userFormData.reps}
@@ -51,6 +52,7 @@ const ExDataForm = (
                         <TextField
                             name='weight'
                             label="Weight"
+                            type="number"
                             variant="outlined"
                             onChange={handleInputChange}
                             value={userFormData.weight}
@@ -100,7 +102,15 @@ const ExDataForm = (
                                 variant="contained"
                                 disabled={!(userFormData.weight && userFormData.reps)}
                                 type='next'
-                                onClick={handleNextButton}
+                                onClick={() => handleNextButton({
+                                    setsInExer: numSets,
+                                    goalReps: goalReps,
+                                    goalWeight: goalWeight,
+                                    exId: _id,
+                                    reps: userFormData.reps,
+                                    weight: userFormData.weight,
+                                    comment: userFormData.comment
+                                })}
                             >
                                 Next
                                 <ArrowForwardIosIcon />

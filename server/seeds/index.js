@@ -703,49 +703,49 @@ db.once('open', async () => {
             description: 'Intense workouts to maximize pushups and pullups.',
             position: 1,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         },
         {
             name: 'Jump Training',
             description: 'Focuses on athletisism. Tip of the day: Land like a cat.',
             position: 2,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         },
         {
             name: 'Shoulders and Arms',
             description: 'Super sets of shoulders, biceps, triceps. Tip of the day: Breathe',
             position: 3,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         },
         {
             name: 'YYYoga',
             description: 'If you think Yoga is easy, think again.',
             position: 4,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         },
         {
             name: 'Legs and Back',
             description: 'Ever thought of working out legs and back in the same workout? You can thank us later.',
             position: 5,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         },
         {
             name: 'Chest, Shoulders, and Triceps',
             description: 'If you think Yoga is easy, think again.',
             position: 1,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         },
         {
             name: 'Back and Biceps',
             description: 'Ever thought of working out legs and back in the same workout? You can thank us later.',
             position: 3,
             secBtwnExs: 120,
-            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id, exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
+            exercises: [exercise[35]._id, exercise[36]._id, exercise[37]._id, exercise[38]._id, exercise[39]._id, exercise[40]._id, exercise[41]._id, exercise[42]._id, exercise[43]._id, exercise[44]._id, exercise[45]._id, exercise[46]._id]
         }
     ]);
 

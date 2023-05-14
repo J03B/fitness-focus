@@ -19,11 +19,11 @@ function ViewPrevious({
   // Set Data Grid headers, followed by how the data will display
   const columns = [
     { field: "id", headerName: "ID", width: 10 },
-    { field: "set", headerName: "Set", width: 40 },
-    { field: "reps", headerName: "Reps", width: 50, type: "number" },
+    { field: "set", headerName: "Set", width: 30 },
+    { field: "reps", headerName: "Reps", width: 40, type: "number" },
     { field: "weight", headerName: "Weight", width: 70 },
-    { field: "comment", headerName: "Comment", width: 105 },
-    { field: "date", headerName: "Date", width: 75 },
+    { field: "comment", headerName: "Comment", width: 100 },
+    { field: "date", headerName: "Date", width: 80 },
   ];
   const rows = [];
   if (prevSetArray?.length) {

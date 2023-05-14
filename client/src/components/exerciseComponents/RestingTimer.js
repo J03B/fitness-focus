@@ -8,8 +8,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const RestingTimer = ({ handlePrevious, handleNext, restTime, goalReps, goalWeight, reps, weight }) => {
 
     const getSuggestion = () => {
-        const repsPassed = reps >= goalReps;
-        const weightPassed = weight >= goalWeight;
+        const repsPassed = (reps >= goalReps);
+        const weightPassed = (weight >= goalWeight);
         if (repsPassed && weightPassed) {
             return 'Congratulations! You surpassed your goals! Make sure to set new goals so you can pass them again.';
         }

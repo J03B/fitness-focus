@@ -38,7 +38,7 @@ const exDataSchema = new Schema(
     },
     createdAt: {
       type: String,
-      default: () => Date.now().toString(),
+      default: () => new Date(Date.now()).toLocaleDateString('en-us', { year: '2-digit' } ),
     },
   },
   {
