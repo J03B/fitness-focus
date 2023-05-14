@@ -49,6 +49,8 @@ const SignupForm = () => {
     });
   };
 
+  const style = { width: "100%", my: 1 };
+
   return (
     <>
       {/* This is needed for the validation functionality above */}
@@ -58,7 +60,7 @@ const SignupForm = () => {
           Something went wrong with your signup!
         </Alert>}
 
-        <div className='mb-3'>
+        <div>
           <TextField
             type='text'
             label='First Name'
@@ -67,11 +69,11 @@ const SignupForm = () => {
             onChange={handleInputChange}
             value={userFormData.firstName}
             required
-            style={{width:"100%"}}
+            sx={ style }
           />
         </div>
 
-        <div className='mb-3'>
+        <div>
           <TextField
             type='text'
             label='Last Name'
@@ -80,11 +82,11 @@ const SignupForm = () => {
             onChange={handleInputChange}
             value={userFormData.lastName}
             required
-            style={{width:"100%"}}
+            sx={ style }
           />
         </div>
 
-        <div className='mb-3'>
+        <div>
           <TextField
             type='email'
             label='Email Address'
@@ -93,11 +95,11 @@ const SignupForm = () => {
             onChange={handleInputChange}
             value={userFormData.email}
             required
-            style={{width:"100%"}}
+            sx={ style }
           />
         </div>
 
-        <div className='mb-3'>
+        <div>
           <TextField
             type='password'
             label='Password'
@@ -106,13 +108,15 @@ const SignupForm = () => {
             onChange={handleInputChange}
             value={userFormData.password}
             required
-            style={{width:"100%"}}
+            sx={ style }
           />
         </div>
         <Button
           disabled={!(userFormData.firstName && userFormData.lastName && userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='success'
+          sx={{ my: 1 }}
+        >
           Submit
         </Button>
       </form>

@@ -55,6 +55,7 @@ const typeDefs = gql`
     secBtwnSets: Int
     exDatasCount: Int
     exDatas: [ExData]
+    workoutId: ID
   }
 
   type ExData {
@@ -94,7 +95,8 @@ const typeDefs = gql`
       goalUnits: String!
       numSets: Int!
       secBtwnSets: Int!
-    ): Exercise
+      workoutId: ID!
+    ): Phase
     addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!, phaseId: ID!): Workout
     addPhase(name: String!, description: String, position: Int!, numberOfWeeks: Int!, programId: ID!): Phase
     addProgram(name: String!, description: String, image: String): Program

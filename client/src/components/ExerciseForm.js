@@ -1,55 +1,121 @@
 import React, { useState } from 'react';
-import { 
-    TextField, 
-    Alert, 
-    Button, 
+import {
+    TextField,
+    Alert,
+    Button,
     FormControl,
     InputLabel,
     Select,
-    MenuItem
+    MenuItem,
+    Skeleton
 } from '@mui/material';
 
 // Custom Components
 import PromptLogin from './PromptLogin';
 
 // Import Mutations and Auth files
-import { useMutation } from "@apollo/client";
-import { ADD_PROGRAM } from "../utils/mutations";
+import { useMutation, useQuery } from '@apollo/client';
+import { ADD_EXERCISE } from '../utils/mutations';
+import { QUERY_ME } from '../utils/queries'
 import Auth from '../utils/auth';
 
-export default function ProgramForm() {
-    const [progFormData, setProgFormData] = useState({ name: '', description: '', image: 'deadlift.jpg' });
+export default function ExerciseForm(props) {
+    // TODO: Verify that workout belongs to user
+    const defaultWorkout = props.workoutId !== undefined ? props.workoutId: ''
+    const [exerciseFormData, setExcerciseFormData] = useState(
+        { 
+            name: '', 
+            description: '', 
+            image: 'deadlift.jpg', 
+            position: '', 
+            goalReps: '', 
+            goalWeight: '', 
+            goalUnits: '', 
+            numSets: '', 
+            secBtwnSets: '', 
+            workoutId: defaultWorkout 
+        }
+    );
     const [validated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [addProg, { error }] = useMutation(ADD_PROGRAM);
+    const [addExercise, { error }] = useMutation(ADD_EXERCISE);
+
+    if (error) {
+        console.log('ADD_EXERCISE error:');
+        console.error(error);
+    }
 
     // Handles the input changes by updating it in our State variable
     const handleInputChange = (event) => {
-        console.log('handleInputChange started');
-        console.log(event.target);
         const { name, value } = event.target;
-        console.log('handleInputChange');
-        console.log()
-        setProgFormData({ ...progFormData, [name]: value });
+        setExcerciseFormData({ ...exerciseFormData, [name]: value });
     };
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+
+        console.log('Attempting to submit form!');
+        console.log('exerciseFormData');
+        console.log(exerciseFormData);
+        // Convert strings to ints
+        console.log('Converting strings to ints');
+        exerciseFormData.position = parseInt(exerciseFormData.position);
+        exerciseFormData.goalReps = parseInt(exerciseFormData.goalReps);
+        exerciseFormData.goalWeight = parseInt(exerciseFormData.goalWeight);
+        exerciseFormData.numSets = parseInt(exerciseFormData.numSets);
+        exerciseFormData.secBtwnSets = parseInt(exerciseFormData.secBtwnSets);
+
+
         try {
-            const { data } = await addProg({
-                variables: { ...progFormData },
+            const { data } = await addExercise({
+                variables: { ...exerciseFormData },
             });
-            console.log(data);
-            window.location.assign('/programs');
+            console.log('Successfully submitted the data');
+            window.location.assign(`/workouts/${data.addExercise._id}`);
         } catch (err) {
             console.error(err);
             setShowAlert(true);
         }
-        setProgFormData({ name: '', description: '', image: 'deadlift.jpg' });
+        setExcerciseFormData(
+            { 
+                name: '', 
+                description: '', 
+                image: '', 
+                position: '', 
+                goalReps: '', 
+                goalWeight: '', 
+                goalUnits: '', 
+                numSets: '', 
+                secBtwnSets: '', 
+                workoutId: '' 
+            }
+        );
     };
 
+    // Get list of all phases for user
+    const { loading, data } = useQuery(QUERY_ME);
+    let programData = data?.me.programs || {};
+    if (loading) {
+        return <Skeleton></Skeleton>
+    }
+    console.log('programData');
+    console.log(programData);
+    let workoutData = [];
+    programData.map((program) => {
+        program.phases.map((phase) => {
+            phase.workouts.map((workout) => {
+                workoutData.push({
+                    'name': `${program.name} | ${phase.name} | ${workout.name}`,
+                    '_id': workout._id
+                });
+            })
+            
+        })
+        
+    });
+
     const style = { width: "100%", my: 1 };
-    
+
     return (
         <>
             {Auth.loggedIn() ? (
@@ -57,23 +123,43 @@ export default function ProgramForm() {
                     {showAlert && <Alert variant='standard' severity='error' color='error'>
                         Something went wrong with accessing the server!
                     </Alert>}
+
+                    <FormControl required fullWidth sx={ style }>
+                        <InputLabel id="workout-select-label">Workout</InputLabel>
+                        <Select
+                            labelId="workout-select-label"
+                            id="workout-select"
+                            name='workoutId'
+                            value={exerciseFormData.workoutId}
+                            label="Workout"
+                            onChange={handleInputChange}
+                        >
+                            {loading
+                                ?<MenuItem sx={ style }>Loading Items</MenuItem>
+                                :workoutData.map((data) => (
+                                    <MenuItem sx={{fontSize:'12px', justifyContent:'center'}} value={data._id} key={data._id}>{data.name}</MenuItem>
+                                )
+                            )}
+                        </Select>
+                    </FormControl>
+
                     <div>
                         <TextField
-                            label='Program Name'
+                            label='Exercise Name'
                             name='name'
                             onChange={handleInputChange}
-                            value={progFormData.name}
                             required
+                            value={exerciseFormData.name}
                             sx={ style }
                         />
                     </div>
 
                     <div>
                         <TextField
-                            label='Program Description'
+                            label='Exercise Description'
                             name='description'
                             onChange={handleInputChange}
-                            value={progFormData.description}
+                            value={exerciseFormData.description}
                             sx={ style }
                         />
                     </div>
@@ -81,19 +167,18 @@ export default function ProgramForm() {
                     <div>
                         <img
                             alt={"Generic Stock fitness"}
-                            src={`/images/${progFormData.image}`}
+                            src={`/images/${exerciseFormData.image}`}
                             width={"100%"}
                         />
                         <FormControl fullWidth sx={ style }>
-                            <InputLabel id="image-select-label">Program Cover Image</InputLabel>
+                            <InputLabel id="image-select-label">Exercise Image</InputLabel>
                             <Select
                                 labelId="image-select-label"
-                                id="program-cover-image"
+                                id="exercise-image"
                                 name='image'
-                                value={progFormData.image}
-                                label="Program Cover Image"
+                                value={exerciseFormData.image}
+                                label="Exercise Image"
                                 onChange={handleInputChange}
-                                
                             >
                                 <MenuItem sx={{fontSize:'12px', justifyContent:'center'}} value={'barbell-bench-press.jpg'}>Barbell Bench Press</MenuItem>
                                 <MenuItem sx={{fontSize:'12px', justifyContent:'center'}} value={'barbell-shoulder-press.jpg'}>Barbell Shoulder Press</MenuItem>
@@ -130,8 +215,79 @@ export default function ProgramForm() {
                         </FormControl>
                     </div>
 
+                    <div>
+                        <TextField
+                            label='Workout Position'
+                            name='position'
+                            onChange={handleInputChange}
+                            value={exerciseFormData.position}
+                            type='number'
+                            required
+                            sx={ style }
+                        />
+                    </div>
+                    
+                    <div>
+                        <TextField
+                            label='Goal Reps'
+                            name='goalReps'
+                            onChange={handleInputChange}
+                            value={exerciseFormData.goalReps}
+                            type='number'
+                            required
+                            sx={ style }
+                        />
+                    </div>
+
+                    <div>
+                        <TextField
+                            label='Goal Weight'
+                            name='goalWeight'
+                            onChange={handleInputChange}
+                            value={exerciseFormData.goalWeight}
+                            type='number'
+                            required
+                            sx={ style }
+                        />
+                    </div>
+
+                    <div>
+                        <TextField
+                            label='Goal units'
+                            name='goalUnits'
+                            onChange={handleInputChange}
+                            value={exerciseFormData.goalUnits}
+                            required
+                            sx={ style }
+                        />
+                    </div>
+                    
+                    <div>
+                        <TextField
+                            label='Number of Sets'
+                            name='numSets'
+                            onChange={handleInputChange}
+                            value={exerciseFormData.numSets}
+                            type='number'
+                            required
+                            sx={ style }
+                        />
+                    </div>
+
+                    <div>
+                        <TextField
+                            label='Seconds Between Sets'
+                            name='secBtwnSets'
+                            onChange={handleInputChange}
+                            value={exerciseFormData.secBtwnSets}
+                            type='number'
+                            required
+                            sx={ style }
+                        />
+                    </div>
+
                     <Button
-                        disabled={!(progFormData.name)}
+                        disabled={!(exerciseFormData.name)}
                         type='submit'
                         variant='contained'
                         onSubmit={handleFormSubmit}

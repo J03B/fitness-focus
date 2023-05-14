@@ -6,25 +6,25 @@ import {
     Typography
   } from '@mui/material';
 
-import WorkoutForm from '../components/WorkoutForm';
+import ExerciseForm from '../components/ExerciseForm';
 
-const AddWorkout = () => {
+const AddExercise = () => {
     // Look for optional phase ID
-    const phaseId = useParams().phaseId;
-    console.log('Phase Id: ' + phaseId);
+    const workoutId = useParams().workoutId;
+    console.log('Workout Id: ' + workoutId);
 
     return (
         <>
             <Container maxWidth='sm'>
                 <Container>
                     <Typography variant="h3" component="div" textAlign={'center'} marginTop={6} marginBottom={2}>
-                        Add Workout
+                        Add Exercise
                     </Typography>
                 </Container>
-                <WorkoutForm phaseId={phaseId}></WorkoutForm>
+                <ExerciseForm workoutId={workoutId}></ExerciseForm>
             </Container>
         </>
     )
 }
 
-export default AddWorkout;
+export default AddExercise;

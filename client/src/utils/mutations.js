@@ -77,6 +77,7 @@ export const ADD_EXERCISE = gql`
     $goalUnits: String!
     $numSets: Int!
     $secBtwnSets: Int!
+    $workoutId: ID!
   ) {
     addExercise(
       name: $name
@@ -88,16 +89,9 @@ export const ADD_EXERCISE = gql`
       goalUnits: $goalUnits
       numSets: $numSets
       secBtwnSets: $secBtwnSets
+      workoutId: $workoutId
     ) {
-      name
-      description
-      image
-      position
-      goalReps
-      goalWeight
-      goalUnits
-      numSets
-      secBtwnSets
+      _id
     }
   }
 `;

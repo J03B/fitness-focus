@@ -77,24 +77,24 @@ export default function WorkoutForm(props) {
     programData.map((program) => {
         program.phases.map((phase) => {
             phaseData.push({
-                'name': phase['name'] + ' (' + program['name'] + ')',
+                'name': `${program['name']} | ${phase['name']}`,
                 '_id': phase._id
             });
         })
         
     });
-    console.log('phaseData');
-    console.log(phaseData);
+    
+    const style = { width: "100%", my: 1 };
 
     return (
         <>
             {Auth.loggedIn() ? (
                 <form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                    {showAlert && <Alert variant='standard' severity='error' color='error' className='mb-3'>
+                    {showAlert && <Alert variant='standard' severity='error' color='error'>
                         Something went wrong with accessing the server!
                     </Alert>}
 
-                    <FormControl required fullWidth className='my-3'>
+                    <FormControl required fullWidth sx={ style }>
                         <InputLabel id="phase-select-label">Phase</InputLabel>
                         <Select
                             labelId="phase-select-label"
@@ -107,34 +107,34 @@ export default function WorkoutForm(props) {
                             {loading
                                 ?<MenuItem>Loading Items</MenuItem>
                                 :phaseData.map((data) => (
-                                    <MenuItem value={data._id} key={data._id}>{data.name}</MenuItem>
+                                    <MenuItem sx={{fontSize:'12px', justifyContent:'center'}} value={data._id} key={data._id}>{data.name}</MenuItem>
                                 )
                             )}
                         </Select>
                     </FormControl>
 
-                    <div className='mb-3'>
+                    <div>
                         <TextField
                             label='Workout Name'
                             name='name'
                             onChange={handleInputChange}
                             required
                             value={workoutFormData.name}
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div>
                         <TextField
                             label='Workout Description'
                             name='description'
                             onChange={handleInputChange}
                             value={workoutFormData.description}
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div>
                         <TextField
                             label='Workout Position'
                             name='position'
@@ -142,11 +142,11 @@ export default function WorkoutForm(props) {
                             value={workoutFormData.position}
                             type='number'
                             required
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div>
                         <TextField
                             label='Seconds Between Exercises'
                             name='secBtwnExs'
@@ -154,7 +154,7 @@ export default function WorkoutForm(props) {
                             value={workoutFormData.secBtwnExs}
                             type='number'
                             required
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
@@ -162,7 +162,9 @@ export default function WorkoutForm(props) {
                         disabled={!(workoutFormData.name)}
                         type='submit'
                         variant='contained'
-                        onSubmit={handleFormSubmit}>
+                        onSubmit={handleFormSubmit}
+                        sx={{ my: 1 }}            
+                    >
                         Submit
                     </Button>
                 </form>)

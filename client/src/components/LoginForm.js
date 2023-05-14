@@ -54,24 +54,26 @@ const LoginForm = () => {
     });
   };
 
+  const style = { width: "100%", my: 1 };
+
   return (
     <>
       <form noValidate validated={validated.toString()} onSubmit={handleFormSubmit}>
         {showAlert && <Alert variant='standard' severity='error' color='error' sx={{mb:2}}>
           Something went wrong with your login credentials!
         </Alert>}
-        <div className='mb-3'>
+        <div>
           <TextField
             label='Email'
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
             required
-            style={{width:"100%"}}
+            sx={ style }
           />
         </div>
 
-        <div className='mb-3'>
+        <div>
           <TextField
             label='Password'
             name='password'
@@ -79,13 +81,15 @@ const LoginForm = () => {
             onChange={handleInputChange}
             value={userFormData.password}
             required
-            style={{width:"100%"}}
+            sx={ style }
           />
         </div>
         <Button
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='success'
+          sx={{ my: 1 }}
+        >
           Submit
         </Button>
       </form>
