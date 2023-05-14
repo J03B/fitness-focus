@@ -167,7 +167,7 @@ const PhaseWorkouts = () => {
             ? `Viewing ${phaseData.workoutsCount} saved ${
                 phaseData.workoutsCount === 1 ? "workout" : "workouts"
               }:`
-            : "You have no saved programs!"}
+            : 'You have no saved workouts for this phase!'}
         </Typography>
         <Stack direction="row" flexWrap="wrap" justifyContent="center">
           {phaseData.workouts.map((work) => {

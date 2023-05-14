@@ -63,16 +63,18 @@ export default function PhaseForm(props) {
     // Get list of all programs for user
     const { loading, data } = useQuery(QUERY_ME);
     let userData = data?.me.programs || {};
+    
+    const style = { width: "100%", my: 1 };
 
     return (
         <>
             {Auth.loggedIn() ? (
                 <form noValidate validated={validated} onSubmit={handleFormSubmit}>
-                    {showAlert && <Alert variant='standard' severity='error' color='error' className='mb-3'>
+                    {showAlert && <Alert variant='standard' severity='error' color='error'>
                         Something went wrong with accessing the server!
                     </Alert>}
 
-                    <FormControl required fullWidth className='my-3'>
+                    <FormControl required fullWidth sx={ style }>
                         <InputLabel id="program-select-label">Program</InputLabel>
                         <Select
                             labelId="program-select-label"
@@ -83,32 +85,32 @@ export default function PhaseForm(props) {
                             onChange={handleInputChange}
                         >
                             {loading
-                                ?<MenuItem>Loading Items</MenuItem>
+                                ?<MenuItem style={{ my: 2}}>Loading Items</MenuItem>
                                 :userData.map((data) => (
-                                    <MenuItem value={data._id} key={data._id}>{data.name}</MenuItem>
+                                    <MenuItem sx={{fontSize:'12px', justifyContent:'center'}} value={data._id} key={data._id}>{data.name}</MenuItem>
                                 )
                             )}
                         </Select>
                     </FormControl>
 
-                    <div className='mb-3'>
+                    <div>
                         <TextField
                             label='Phase Name'
                             name='name'
                             onChange={handleInputChange}
                             required
                             value={phaseFormData.name}
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
-                    <div className='mb-3'>
+                    <div>
                         <TextField
                             label='Phase Description'
                             name='description'
                             onChange={handleInputChange}
                             value={phaseFormData.description}
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
@@ -120,7 +122,7 @@ export default function PhaseForm(props) {
                             value={phaseFormData.position}
                             type='number'
                             required
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
@@ -132,7 +134,7 @@ export default function PhaseForm(props) {
                             value={phaseFormData.numberOfWeeks}
                             type='number'
                             required
-                            style={{ width: "100%" }}
+                            sx={ style }
                         />
                     </div>
 
@@ -140,7 +142,9 @@ export default function PhaseForm(props) {
                         disabled={!(phaseFormData.name)}
                         type='submit'
                         variant='contained'
-                        onSubmit={handleFormSubmit}>
+                        onSubmit={handleFormSubmit}
+                        sx={{ my: 1 }}
+                    >
                         Submit
                     </Button>
                 </form>)

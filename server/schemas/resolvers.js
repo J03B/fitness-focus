@@ -91,8 +91,14 @@ const resolvers = {
     },
     // addExercise(name: String!, description: String, image: String, position: Int!, goalReps: Int!, goalWeight: Int!, goalUnits: String!, numSets: Int!, secBtwnSets: Int!): Exercise
     addExercise: async (parent, args) => {
-      const data = new Exercise(args);
-      return data;
+      const newExercise = await Exercise.create(args);
+      await Workout.findByIdAndUpdate(args.workoutId, {
+        $push: { exercises: newExercise.id },
+      });
+      const parentPhaseId = await Phase.findOne(
+        { workouts: { _id: args.workoutId } }
+      )
+      return parentPhaseId;
     },
     // addWorkout(name: String!, description: String, position: Int!, secBtwnExs: Int!, phaseId: ID!): Workout
     addWorkout: async (parent, args) => {
