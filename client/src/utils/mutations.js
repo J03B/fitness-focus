@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -35,6 +35,7 @@ export const ADD_USER = gql`
 // addExData(setNum: Int!, reps: Int!, weight: Int!, units: String!, comment: String): ExData
 export const ADD_EXDATA = gql`
   mutation addExData(
+    $exerciseId: ID!
     $setNum: Int!
     $reps: Int!
     $weight: Int!
@@ -42,17 +43,25 @@ export const ADD_EXDATA = gql`
     $comment: String
   ) {
     addExData(
+      exerciseId: $exerciseId
       setNum: $setNum
       reps: $reps
       weight: $weight
       units: $units
       comment: $comment
     ) {
+      _id
+      name
+      exDatasCount
+      exDatas {
+        _id
         setNum
         reps
         weight
         units
         comment
+        createdAt
+      }
     }
   }
 `;
@@ -80,15 +89,15 @@ export const ADD_EXERCISE = gql`
       numSets: $numSets
       secBtwnSets: $secBtwnSets
     ) {
-        name
-        description
-        image
-        position
-        goalReps
-        goalWeight
-        goalUnits
-        numSets
-        secBtwnSets
+      name
+      description
+      image
+      position
+      goalReps
+      goalWeight
+      goalUnits
+      numSets
+      secBtwnSets
     }
   }
 `;
@@ -132,29 +141,21 @@ export const ADD_PHASE = gql`
       numberOfWeeks: $numberOfWeeks
       programId: $programId
     ) {
-        name
-        description
-        position
-        numberOfWeeks
-        programId
+      name
+      description
+      position
+      numberOfWeeks
+      programId
     }
   }
 `;
 // addProgram(name: String!, description: String, image: String): Program
 export const ADD_PROGRAM = gql`
-  mutation addProgram(
-    $name: String!
-    $description: String
-    $image: String
-  ) {
-    addProgram(
-      name: $name
-      description: $description
-      image: $image
-    ) {
-        name
-        description
-        image
+  mutation addProgram($name: String!, $description: String, $image: String) {
+    addProgram(name: $name, description: $description, image: $image) {
+      name
+      description
+      image
     }
   }
 `;
@@ -172,70 +173,46 @@ export const UPDATE_GOALS = gql`
       goalWeight: $goalWeight
       goalUnits: $goalUnits
     ) {
-        _id
-        goalReps
-        goalWeight
-        goalUnits
+      _id
+      goalReps
+      goalWeight
+      goalUnits
     }
   }
 `;
 // addExersData(_id: ID!, exDatas: [ExData]!): Exercise
 export const ADD_EXERCISE_DATA = gql`
-  mutation addExersData(
-    $_id: ID!
-    $exDatas: [ExData]!
-  ) {
-    addExersData(
-      _id: $_id
-      exDatas: $exDatas
-    ) {
-        _id
-        exDatas
+  mutation addExersData($_id: ID!, $exDatas: [ExData]!) {
+    addExersData(_id: $_id, exDatas: $exDatas) {
+      _id
+      exDatas
     }
   }
 `;
 // addWorkExers(_id: ID!, exercises: [ID]!): Workout
 export const ADD_WORKOUT_EXERCISES = gql`
-  mutation addWorkExers(
-    $_id: ID!
-    $exercises: [ID]!
-  ) {
-    addWorkExers(
-      _id: $_id
-      exercises: $exercises
-    ) {
-        _id
-        exercises
+  mutation addWorkExers($_id: ID!, $exercises: [ID]!) {
+    addWorkExers(_id: $_id, exercises: $exercises) {
+      _id
+      exercises
     }
   }
 `;
 // addPhaseWorks(_id: ID!, workouts: [ID]!): Phase
 export const ADD_PHASE_WORKOUTS = gql`
-  mutation addPhaseWorks(
-    $_id: ID!
-    $workouts: [ID]!
-  ) {
-    addPhaseWorks(
-      _id: $_id
-      workouts: $workouts
-    ) {
-        _id
-        workouts
+  mutation addPhaseWorks($_id: ID!, $workouts: [ID]!) {
+    addPhaseWorks(_id: $_id, workouts: $workouts) {
+      _id
+      workouts
     }
   }
 `;
 // addProgPhases(_id: ID!, phases: [ID]!): Program
 export const ADD_PROGRAM_PHASES = gql`
-  mutation addProgPhases(
-    $_id: ID!
-    $phases: [ID]!
-  ) {
-    addProgPhases(
-      _id: $_id
-      phases: $phases
-    ) {
-        _id
-        phases
+  mutation addProgPhases($_id: ID!, $phases: [ID]!) {
+    addProgPhases(_id: $_id, phases: $phases) {
+      _id
+      phases
     }
   }
 `;
