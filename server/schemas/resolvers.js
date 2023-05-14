@@ -44,7 +44,7 @@ const resolvers = {
     },
     // workouts(id: ID!): Workout
     workouts: async (parent, args, context, info) => {
-      return Workout.findOne({ _id: args.id });
+      return Workout.findOne({ _id: args.id }).populate("exercises");
     },
     // exercise(id: ID!): Exercise
     exercise: async (parent, args, context, info) => {

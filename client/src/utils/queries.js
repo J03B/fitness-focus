@@ -70,6 +70,11 @@ export const QUERY_WORKOUTS = gql`
       totalSetsCount
       exercises {
         _id
+        name
+        numSets
+        goalReps
+        goalWeight
+        goalUnits
       }
     }
   }

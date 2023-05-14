@@ -27,7 +27,7 @@ function ViewPrevious({
   ];
   const rows = [];
   if (prevSetArray?.length) {
-    for (let i = 0; i < prevSetArray.length; i++) {
+    for (let i = prevSetArray.length - 1; i >= 0; i--) {
       const set = prevSetArray[i];
       const reps = prevRepsArray[i];
       const wt = prevWeightArray[i];

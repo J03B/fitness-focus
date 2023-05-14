@@ -22,6 +22,7 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import CloseIcon from '@mui/icons-material/Close';
 import Fade from '@mui/material/Fade';
 import Divider from '@mui/material/Divider';
+import ThemeSwitch from './ThemeSwitch';
 
 // Apollo imports
 import { useQuery } from '@apollo/client';
@@ -33,10 +34,7 @@ import SignupForm from './SignupForm';
 import { QUERY_ME } from '../utils/queries';
 import { red } from '@mui/material/colors';
 
-// Define items for settings menu
-const settings = ['Logout'];
-
-function AppNavbar() {
+function AppNavbar( {modeState} ) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -289,11 +287,12 @@ function AppNavbar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleUserCloseLogout}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+              <MenuItem key='logout' onClick={handleUserCloseLogout}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
+              <MenuItem>
+                <ThemeSwitch modeState={modeState}/>
+              </MenuItem>
               </Menu>
             </Box>
           )}
