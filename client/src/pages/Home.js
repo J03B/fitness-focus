@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 
 const Home = () => {
   return (
-    <>
+    <div style={{backgroundImage: '/images/gym-backdrop.jpg'}}>
       <Container maxWidth="md" sx={{ my: 4 }}>
         <Typography variant="h2">Welcome to Fitness Focus</Typography>
         <Typography variant="h4" sx={{ my: 4 }}>
@@ -26,7 +26,7 @@ const Home = () => {
           <PromptLogin prompt={'to view Programs'} />
         </Container>
       )}
-    </>
+    </div>
   );
 };
 
