@@ -31,7 +31,12 @@ const ExDataForm = (
             <form
                 noValidate
                 validated={validated.toString()}
-                onSubmit={handleFinishButton}
+                onSubmit={() => handleFinishButton({
+                    exId: _id,
+                    reps: userFormData.reps,
+                    weight: userFormData.weight,
+                    comment: userFormData.comment
+                })}
             >
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     <Grid item xs={6} >

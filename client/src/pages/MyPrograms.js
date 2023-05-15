@@ -41,7 +41,7 @@ const MyPrograms = () => {
     }
 
     return (
-      <Card key={progId} sx={{width: '350px'}} variant="outlined">
+      <Card key={progId} sx={{width: '350px'}} variant="outlined" onClick={() => handleOpenProgram(progId)}>
         {progData.image && (
           <CardMedia
             sx={{ height: 300 }}

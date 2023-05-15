@@ -10,7 +10,6 @@ const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body1,
     padding: theme.spacing(1),
     textAlign: 'center',
-    color: '#fff',
 }));
 
 const PromptLogin = ({ prompt }) => {
