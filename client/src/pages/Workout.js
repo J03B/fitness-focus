@@ -86,12 +86,10 @@ const StartWorkout = () => {
     };
 
     // TODO - POSSIBLY JUST SUBMIT THE LAST DATA AND GO BACK TO THE HOME PAGE
-    const handleFormSubmit = () => {
-        // If last workout was just finished, go to the finish workout page
-        if (progressPercent >= 100) {
-            setFinishButton(true);
-            return;
-        }
+    const handleFormSubmit = ({ reps, weight, comment, exId }) => {
+        // Save the data first 
+        postExData({ exId: exId, reps: reps, weight: weight, comment: comment });
+        window.location.assign(`/`);
     }
 
     // Functions to get/post data from/to the user's exercises models
@@ -104,8 +102,8 @@ const StartWorkout = () => {
         console.log({ exId, reps, weight, comment, currentSetNum });
         try {
             let unitConfig;
-            if (weight) { 
-                if (weight === 1) { 
+            if (parseInt(weight)) { 
+                if (weight == 1) { 
                     unitConfig = 'lb' 
                 } else { 
                     unitConfig = "lbs"
