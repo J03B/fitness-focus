@@ -4,7 +4,7 @@
 
 ## Final Deployed Webpage
 
-[Fitness Focus Deployed Application (powered by Heroku)](https://fitness-focus.herokuapp.com/)
+[Fitness Focus Deployed Application (powered by Heroku)](https://fitnessfocus.herokuapp.com/)
 
 ## Table of Contents
 
