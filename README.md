@@ -19,6 +19,9 @@
 
 The goal of this application is to track specific workouts for a signed-up user with a performant backend and slick frontend by using MongoDB, Express, React, and Node (MERN).
 
+![Fitness Focus Screenshot Dark](./server/assets/fitness-focus-screenshot-1.png)
+![Fitness Focus Screenshot Light](./server/assets/fitness-focus-screenshot-2.png)
+
 ### Mock Up
 
 Navigating through a workout in the app
