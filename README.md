@@ -9,7 +9,7 @@
 ## Table of Contents
 
 1. [Description](#description)
-2. [Task Completed]('#task-completed')
+2. [Task Completed](#task-completed)
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [License](#license)
