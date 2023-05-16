@@ -9,11 +9,12 @@
 ## Table of Contents
 
 1. [Description](#description)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [License](#license)
-5. [Contributing](#contributing)
-6. [Questions](#questions)
+2. [Task Completed]('#task-completed')
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [License](#license)
+6. [Contributing](#contributing)
+7. [Questions](#questions)
 
 ## Description
 
@@ -21,12 +22,6 @@ The goal of this application is to track specific workouts for a signed-up user 
 
 ![Fitness Focus Screenshot Dark](./server/assets/fitness-focus-screenshot-1.png)
 ![Fitness Focus Screenshot Light](./server/assets/fitness-focus-screenshot-2.png)
-
-### Mock Up
-
-Navigating through a workout in the app
-
-![A gif of the user going through the workout in the application, utilizing some of its features/capabilities.](./assets/mock-up.gif)
 
 ### Task Completed
 
