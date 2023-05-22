@@ -12,6 +12,7 @@ import Stack from "@mui/material/Stack";
 import { Box, Modal } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
+import BreadcrumbNav from '../components/BreadcrumbNav';
 import NoMatch from "./NoMatch";
 
 import { useQuery } from "@apollo/client";
@@ -143,15 +144,32 @@ const PhaseWorkouts = () => {
   if (loading) {
     return <CircularProgress />;
   }
-
+  
+  // TODO: Add correct name and link for the program
+  const breadcrumbs = [
+    {
+      'name': 'My Programs',
+      'href': '/programs'
+    },
+    {
+      'name': 'Program',
+      'href': '/programs'
+    },
+    {
+      'name': phaseData.name,
+    }
+  ];
+  
   return (
+    
     <>
+      <BreadcrumbNav breadcrumbs={breadcrumbs}></BreadcrumbNav>
       <Container>
         <Typography
           variant="h3"
           component="div"
           textAlign={"center"}
-          marginTop={6}
+          marginTop={2}
         >
           {phaseData.name}
         </Typography>
