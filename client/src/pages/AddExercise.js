@@ -7,17 +7,25 @@ import {
   } from '@mui/material';
 
 import ExerciseForm from '../components/ExerciseForm';
+import BreadcrumbNav from '../components/BreadcrumbNav';
 
 const AddExercise = () => {
     // Look for optional phase ID
     const workoutId = useParams().workoutId;
-    console.log('Workout Id: ' + workoutId);
+
+    const breadcrumbs = [
+        {
+          'name': 'Add Exercise',
+          'href': '/add-exercise'
+        }
+    ];
 
     return (
         <>
             <Container maxWidth='sm'>
+                <BreadcrumbNav breadcrumbs={breadcrumbs}></BreadcrumbNav>
                 <Container>
-                    <Typography variant="h3" component="div" textAlign={'center'} marginTop={6} marginBottom={2}>
+                    <Typography variant="h3" component="div" textAlign={'center'} marginTop={2} marginBottom={2}>
                         Add Exercise
                     </Typography>
                 </Container>

@@ -17,6 +17,7 @@ import Auth from '../utils/auth';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_PROGRAMS } from '../utils/queries';
+import BreadcrumbNav from '../components/BreadcrumbNav';
 
 const MyPrograms = () => {
   const { loading, data } = useQuery(QUERY_ME);
@@ -74,8 +75,16 @@ const MyPrograms = () => {
     console.log(userData);
   }
 
+  const breadcrumbs = [
+    {
+      'name': 'My Programs',
+      'href': '/programs'
+    }
+  ];
+  
   return (
     <>
+      <BreadcrumbNav breadcrumbs={breadcrumbs}></BreadcrumbNav>
       <Container fluid className="text-light bg-dark p-5">
         <Typography variant="h2" sx={{ textAlign: 'center' }}>
           Viewing Your Workout Programs

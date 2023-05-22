@@ -14,6 +14,8 @@ import NoMatch from './NoMatch';
 
 import { useQuery } from '@apollo/client';
 import { QUERY_PROGRAMS, QUERY_PHASES } from '../utils/queries';
+import BreadcrumbNav from '../components/BreadcrumbNav';
+
 
 const ProgramPhases = () => {
   let { programId } = useParams();
@@ -71,10 +73,22 @@ const ProgramPhases = () => {
     return <CircularProgress />;
   }
 
+  const breadcrumbs = [
+    {
+      'name': 'My Programs',
+      'href': '/programs'
+    },
+    {
+      'name': progData.name,
+      'href': '/programs'
+    }
+  ];
+
   return (
     <>
+      <BreadcrumbNav breadcrumbs={breadcrumbs}></BreadcrumbNav>
       <Container>
-        <Typography variant="h3" component="div" textAlign={'center'} marginTop={6}>
+        <Typography variant="h3" component="div" textAlign={'center'} marginTop={2}>
           {progData.name}
         </Typography>
       </Container>
